@@ -126,7 +126,7 @@ export default {
     let that = this
     this.token = Common.getQueryString("token") || this.$token;
     this.pageHost = this.$config.ubms_HOST
-    this.pageMethods = '/ubms-server/OpsDeptInfo/getPageOpsDeptInfo.htm'
+    this.pageMethods = '/OpsDeptInfo/getPageOpsDeptInfo.htm'
     this.getPreSelect()
     this.searchTable()
     Bus.$on('page-tfequ', function(val) {
@@ -218,7 +218,7 @@ export default {
           if (action === 'confirm') {
             instance.confirmButtonLoading = true;
             instance.confirmButtonText = '删除中...';
-            let apiName = this.$config.ubms_HOST + '/ubms-server/OpsDeptInfo/removeOpsDeptInfo.htm?token=' + this.token
+            let apiName = this.$config.ubms_HOST + '/OpsDeptInfo/removeOpsDeptInfo.htm?token=' + this.token
             let data = {
               data: JSON.stringify(this.baseInfo)
             };
@@ -238,7 +238,7 @@ export default {
                     type: 'error',
                     message: '删除失败'
                   });
-                  console.log('/ubms-server/OpsDeptInfo/removeOpsDeptInfo.htm出错');
+                  console.log('/OpsDeptInfo/removeOpsDeptInfo.htm出错');
                 }
               })
               .catch(err => {
@@ -254,7 +254,7 @@ export default {
       }).then().catch()
     },
     confirmDelete() {
-      let apiName = this.$config.ubms_HOST + '/ubms-server/OpsDeptInfo/removeOpsDeptInfo.htm?token=' + this.token
+      let apiName = this.$config.ubms_HOST + '/OpsDeptInfo/removeOpsDeptInfo.htm?token=' + this.token
       let data = {
         data: JSON.stringify(this.baseInfo)
       };
@@ -272,7 +272,7 @@ export default {
               type: 'error',
               message: '删除失败'
             });
-            console.log('/ubms-server/OpsDeptInfo/removeOpsDeptInfo.htm出错');
+            console.log('/OpsDeptInfo/removeOpsDeptInfo.htm出错');
           }
         })
         .catch(err => {
@@ -310,7 +310,7 @@ export default {
     },
     getPreSelect() {
       {
-        let apiName = this.$config.ubms_HOST + '/ubms-server/OpsDeptInfo/getOpsDeptInfo.htm'
+        let apiName = this.$config.ubms_HOST + '/OpsDeptInfo/getOpsDeptInfo.htm'
         let param = {}
         let data = {
           token: this.token,
@@ -322,7 +322,7 @@ export default {
             if (res.appCode === '0') {
               this.topDeptList = res.resultList
             } else {
-              console.log('/ubms-server/OpsDeptInfo/getOpsDeptInfo.htm出错');
+              console.log('/OpsDeptInfo/getOpsDeptInfo.htm出错');
             }
           })
           .catch(err => {

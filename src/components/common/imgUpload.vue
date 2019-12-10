@@ -87,7 +87,7 @@
                 }
 
                 formData.append("file", file);
-                this.$api.postMethod(this.$config.efoms_HOST, this.$config.uploadFile_POST, formData, this.token)
+                this.$api.postMethod(this.$config.efoms_HOST, '/file/uploadFile', formData, this.token)
                     .then(res => {
                         if (res.appCode == 0) {
                             this.zjImgFiles.push(res.resultList);
@@ -99,11 +99,11 @@
                                     .toLowerCase()
                             });
                         } else {
-                            Common.printErrorLog(this.$config.efoms_HOST, this.$config.uploadFile_POST);
+                            Common.printErrorLog(this.$config.efoms_HOST, '/file/uploadFile');
                         }
                     })
                     .catch(err => {
-                        Common.printErrorLog(this.$config.efoms_HOST, this.$config.uploadFile_POST);
+                        Common.printErrorLog(this.$config.efoms_HOST, '/file/uploadFile');
                         console.log(err);
                     });
             },
@@ -113,14 +113,14 @@
                     secondDir: e.secondDir,
                     fileName: e.fileName
                 };
-                this.$api.deleteMethod(this.$config.efoms_HOST, this.$config.deleteFile_GET, obj)
+                this.$api.deleteMethod(this.$config.efoms_HOST, '/file/deleteFile', obj)
                     .then(res => {
                         if (res.appCode == 0) {} else {
-                            Common.printErrorLog(this.$config.efoms_HOST, this.$config.deleteFile_GET);
+                            Common.printErrorLog(this.$config.efoms_HOST, '/file/deleteFile');
                         }
                     })
                     .catch(err => {
-                        Common.printErrorLog(this.$config.efoms_HOST, this.$config.deleteFile_GET);
+                        Common.printErrorLog(this.$config.efoms_HOST, '/file/deleteFile');
                         console.log(err);
                     });
             }

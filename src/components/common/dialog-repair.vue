@@ -101,18 +101,18 @@
                 let obj = {
                     list: JSON.stringify([recodeInfo])
                 };
-                this.$api.getMethod(this.$config.efoms_HOST, this.$config.insertCheckRecordInfo_PUT, obj, this.token, "json")
+                this.$api.getMethod(this.$config.efoms_HOST, '/checkRecord/insertCheckRecordInfo', obj, this.token, "json")
                     .then(res => {
                         if (res.appCode == 0) {
                             Common.ejMessage("success");
                             this.closeRepair();
                         } else {
                             Common.ejMessage("warning");
-                            Common.printErrorLog(this.$config.efoms_HOST, this.$config.insertCheckRecordInfo_PUT);
+                            Common.printErrorLog(this.$config.efoms_HOST, '/checkRecord/insertCheckRecordInfo');
                         }
                     })
                     .catch(err => {
-                        Common.printErrorLog(this.$config.efoms_HOST, this.$config.insertCheckRecordInfo_PUT);
+                        Common.printErrorLog(this.$config.efoms_HOST, '/checkRecord/insertCheckRecordInfo');
                         console.log(err);
                     });
             },
@@ -143,7 +143,7 @@
                     failureTypeName: failureTypeName,
                     fileInfoList: this.imgFileList
                 };
-                this.$api.postMethod(this.$config.efoms_HOST, '/efoms-rest/workorders/createWorkordersInfo', repairsInfo, this.token,
+                this.$api.postMethod(this.$config.efoms_HOST, '/workorders/createWorkordersInfo', repairsInfo, this.token,
                         'noContentType')
                     .then(res => {
                         if (res.appCode == 0) {
@@ -153,11 +153,11 @@
                             this.submitNormal();
                         } else {
                             Common.ejMessage("warning");
-                            Common.printErrorLog(this.$config.efoms_HOST, '/efoms-rest/workorders/createWorkordersInfo');
+                            Common.printErrorLog(this.$config.efoms_HOST, '/workorders/createWorkordersInfo');
                         }
                     })
                     .catch(err => {
-                        Common.printErrorLog(this.$config.efoms_HOST, '/efoms-rest/workorders/createWorkordersInfo');
+                        Common.printErrorLog(this.$config.efoms_HOST, '/workorders/createWorkordersInfo');
                         console.log(err);
                     });
             },
@@ -174,16 +174,16 @@
                         parentCode: 'REPDEVTYPE02'
                     });
                 }
-                this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, obj)
+                this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', obj)
                     .then(res => {
                         if (res.appCode == 0) {
                             this.faultList = res.resultList;
                         } else {
-                            Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+                            Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
                         }
                     })
                     .catch(err => {
-                        Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+                        Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
                         console.log(err);
                     });
             }

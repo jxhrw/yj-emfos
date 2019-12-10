@@ -97,7 +97,7 @@
         overflow-x: hidden;
     }
 
-    .el-menu--popup {
+    body .el-menu--popup {
         min-width: 140px;
     }
 

@@ -124,7 +124,7 @@
             this.$api
                 .getMethod(
                     this.$config.efoms_HOST,
-                    "/efoms-rest/CheckReport/getDevAndFailSum", {},
+                    "/CheckReport/getDevAndFailSum", {},
                     this.token
                 )
                 .then(res => {
@@ -532,7 +532,7 @@
             },
             getCheckCount() {
                 let pageHost = this.$config.efoms_HOST;
-                let pageMethods = "/efoms-rest/checkDevice/getNewCheckCount";
+                let pageMethods = "/checkDevice/getNewCheckCount";
                 let obj = { devTypeCode: this.devTypeCode };
                 this.statData = [];
                 this.isCheckNumLoading = true;
@@ -885,14 +885,14 @@
             getDicInfo(parentCode) {
                 return this.$api.getMethod(
                     this.$config.ubms_HOST,
-                    this.$config.getDeviceDic_GET, { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
+                    '/DeviceDic/getDeviceDic.htm', { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
                 );
             },
             // 数据字典(2)
             getDicInfoOther() {
                 return this.$api.getMethod(
                     this.$config.efoms_HOST,
-                    "/efoms-rest/CheckReport/getSelectValue", { devTypeCode: this.devType },
+                    "/CheckReport/getSelectValue", { devTypeCode: this.devType },
                     this.token
                 );
             },
@@ -900,7 +900,7 @@
             getDicInfoTaf(parentCode) {
                 return this.$api.getMethod(
                     this.$config.ubms_HOST,
-                    "/ubms-server/TrafficDic/getTrafficDic.htm", { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
+                    "/TrafficDic/getTrafficDic.htm", { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
                 );
             }
         }

@@ -64,7 +64,7 @@
             // 查询服务器时间信息
             getDateInfo() {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.getServiceTimeReal_GET;
+                let method = '/date/getServiceTimeReal';
                 let token = Common.getQueryString("token");
                 this.$api.getMethod(host, method, {}, token).then(res => {
                     if (res.appCode == 0) {
@@ -77,7 +77,7 @@
             },
             logOutFuc() {
                 let host = this.$config.efoms_HOST;
-                let method = '/efoms-rest/system/logout';
+                let method = '/system/logout';
                 let token = Common.getQueryString("token");
                 this.$api.getMethod(host, method, {}, token).then(res => {
                         // if (res) {
@@ -203,7 +203,7 @@
 <style>
     @import '../../assets/css/blue.css';
 
-    .logout {
+    .el-popover.logout {
         min-width: 50px;
     }
 

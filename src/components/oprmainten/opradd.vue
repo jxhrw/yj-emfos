@@ -147,7 +147,7 @@ export default {
       let opt1 = !!this.deptName && !!this.deptType
       if (opt1) {
         this.loading = true
-        let apiName = this.$config.ubms_HOST + '/ubms-server/OpsDeptInfo/addOpsDeptInfo.htm?token=' + this.token
+        let apiName = this.$config.ubms_HOST + '/OpsDeptInfo/addOpsDeptInfo.htm?token=' + this.token
         this.queryConditions = {
             "opsDeptId": this.deptId,
             "opsDeptName": this.deptName,
@@ -180,7 +180,7 @@ export default {
             } else {
               this.loading = false
               this.$message.error('添加失败!')
-              console.log('/ubms-server/OpsDeptInfo/addOpsDeptInfo.htm出错');
+              console.log('/OpsDeptInfo/addOpsDeptInfo.htm出错');
             }
           })
           .catch(err => {
@@ -198,7 +198,7 @@ export default {
     },
     getPreSelect() {
       {
-        let apiName = this.$config.ubms_HOST + '/ubms-server/PublicDic/getDicInfo.htm'
+        let apiName = this.$config.ubms_HOST + '/PublicDic/getDicInfo.htm'
         this.queryConditions = {
           "parentCode": "OPSDEPTTYPE"
         }
@@ -214,14 +214,14 @@ export default {
               this.deptType = this.deptTypeList[0]
               this.deptTypeCode = this.deptTypeList[0].dicCode
             } else {
-              console.log('/ubms-server/PublicDic/getDicInfo.htm出错');
+              console.log('/PublicDic/getDicInfo.htm出错');
             }
           })
           .catch(err => {
             console.log(err);
           });
       } {
-        let apiName = this.$config.ubms_HOST + '/ubms-server/OpsDeptInfo/getOpsDeptInfo.htm'
+        let apiName = this.$config.ubms_HOST + '/OpsDeptInfo/getOpsDeptInfo.htm'
         this.queryConditions = {}
         let data = {
           token: this.token,
@@ -235,7 +235,7 @@ export default {
               this.topDept = this.topDeptList[0]
               this.topDeptCode = this.topDeptList[0].opsDeptId
             } else {
-              console.log('/ubms-server/OpsDeptInfo/getOpsDeptInfo.htm出错');
+              console.log('/OpsDeptInfo/getOpsDeptInfo.htm出错');
             }
           })
           .catch(err => {

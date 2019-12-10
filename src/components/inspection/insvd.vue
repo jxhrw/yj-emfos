@@ -403,7 +403,7 @@
         methods: {
             exportDev() {
                 let host = this.$config.efoms_HOST;
-                let method = '/efoms-rest/export/exportNewChecckDeviceInfo';
+                let method = '/export/exportNewChecckDeviceInfo';
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         if (res.path) {
@@ -509,7 +509,7 @@
             },
             getCheckCount() {
                 let pageHost = this.$config.efoms_HOST;
-                let pageMethods = '/efoms-rest/checkDevice/getNewCheckCount';
+                let pageMethods = '/checkDevice/getNewCheckCount';
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 delete obj.pageSize;
                 delete obj.currentPage;
@@ -526,7 +526,7 @@
             },
             searchTable(isPrev) {
                 let pageHost = this.$config.efoms_HOST;
-                let pageMethods = '/efoms-rest/checkDevice/getNewCheckPage';
+                let pageMethods = '/checkDevice/getNewCheckPage';
                 this.isTableLoading = true;
                 this.$api.getMethod(pageHost, pageMethods, this.queryConditions, this.token).then(res => {
                         setTimeout((load) => {
@@ -575,7 +575,7 @@
             // 自动截图
             getPageVehSearFuc(id) {
                 let host = this.$config.efoms_HOST;
-                let method = '/efoms-rest/webService/getPlaybackList';
+                let method = '/webService/getPlaybackList';
                 let queryConditions = {
                     videoid: this.currentInfo.videoPlayId,
                     startTime: Common.dateFormat('yyyy-MM-dd', new Date()) + ' 00:00:00',
@@ -635,7 +635,7 @@
             // 报警信息列表
             getWarnInfoFuc() {
                 let pageHost = this.$config.efoms_HOST;
-                let pageMethods = this.$config.getDeviceWranInfoPage_GET;
+                let pageMethods = '/wran/getDeviceWranInfoPage';
                 let day = new Date().getTime() - 7 * 24 * 60 * 60 * 1000;
                 let today1 = Common.dateFormat('yyyy-MM-dd', new Date(day));
                 let today2 = Common.dateFormat('yyyy-MM-dd', new Date());
@@ -721,7 +721,7 @@
                 }
             },
             devRepeatCheck(devId, devTypeCode) {
-                this.$api.get(`${this.$config.efoms_HOST}/efoms-rest/repairs/devRepeatCheck`, { devId: devId, devTypeCode: devTypeCode }, { token: this.token })
+                this.$api.get(`${this.$config.efoms_HOST}/repairs/devRepeatCheck`, { devId: devId, devTypeCode: devTypeCode }, { token: this.token })
                     .then(res => {
                         if (res.appCode == 2103) {
                             this.isRepaired = true;

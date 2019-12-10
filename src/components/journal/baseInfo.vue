@@ -153,7 +153,7 @@
         }
       },
       getRegionInfo(parentCode) {
-        return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getRegionInfo_GET, {
+        return this.$api.getMethod(this.$config.ubms_HOST, '/RegionInfo/getRegionInfo.htm', {
           token: this.token,
           data: JSON.stringify({
             parentCode: parentCode
@@ -161,7 +161,7 @@
         });
       },
       getRegionTree(parentCode) {
-        return this.$api.getMethod(this.$config.efoms_HOST, this.$config.getRegionTree_GET, {
+        return this.$api.getMethod(this.$config.efoms_HOST, '/ubmsService/getRegionTree', {
           token: this.token,
           data: JSON.stringify({
             regionId: parentCode
@@ -170,7 +170,7 @@
       },
       // 数据字典
       getDicInfo(parentCode) {
-        return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, {
+        return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', {
           token: this.token,
           data: JSON.stringify({
             parentCode: parentCode

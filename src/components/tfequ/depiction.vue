@@ -143,7 +143,7 @@
         mounted() {
             this.token = Common.getQueryString("token");
             this.pageHost = this.$config.efoms_HOST;
-            this.pageMethods = this.$config.selectAssetDevicePage_GET;
+            this.pageMethods = '/deviceDetail/selectAssetDevicePage';
             this.queryConditions.devTypeCode = sessionStorage.getItem('tfEquType') || 'REPDEVTYPE01';
             this.selectRepairsInfoPage();
             Bus.$on("queryConditions", value => {
@@ -170,7 +170,7 @@
         methods: {
             exportExcel() {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.exportDeviceInfo_GET;
+                let method = '/export/exportDeviceInfo';
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         window.open(res.path);
@@ -259,30 +259,30 @@
                 let obj = {};
                 switch (this.baseInfo.devTypeCode) {
                     case "REPDEVTYPE01": // 信号机
-                        method = this.$config.editSignalSiteInfo_POST;
+                        method = '/SignalSiteInfo/editSignalSiteInfo.htm';
                         obj.ssId = this.baseInfo.devId;
                         obj.deviceStatusCode = status;
                         break;
                     case "REPDEVTYPE02": // 视频监控
-                        method = this.$config.editVideoSiteInfo_POST;
+                        method = '/VideoSiteInfo/editVideoSiteInfo.htm';
                         obj.vdSiteId = this.baseInfo.devId;
                         obj.deviceStatusCode = status;
                         break;
                     case "REPDEVTYPE08": // 诱导屏
-                        method = this.$config.editLedInfo_POST;
+                        method = '/LedInfoController/editLedInfo.htm';
                         obj.ledId = this.baseInfo.devId;
                         obj.deviceStatusCode = status;
                         break;
                     case "REPDEVTYPE03": // 卡口
                     case "REPDEVTYPE04": // 电子警察
-                        method = this.$config.editOffsiteInfo_POST;
+                        method = '/OffsiteInfo/editOffsiteInfo.htm';
                         obj.offsiteId = this.baseInfo.devId;
                         obj.osstatusCode = status;
                         break;
                     case "REPDEVTYPE05": // 地磁
                     case "REPDEVTYPE06": // 线圈
                     case "REPDEVTYPE07": // 微波
-                        method = this.$config.editTrFlowDevInfo_POST;
+                        method = '/TrFlowInfoController/editTrFlowDevInfo.htm';
                         obj.trfDevId = this.baseInfo.devId;
                         obj.deviceStatusCode = status;
                         break;
@@ -324,7 +324,7 @@
                         break;
                     case 'normal':
                         let host = this.$config.efoms_HOST;
-                        let method = this.$config.updateDevStatusInfo_PUT;
+                        let method = '/devStatus/updateDevStatusInfo';
                         let obj = {
                             devId: this.baseInfo.devId,
                             devTypeCode: this.baseInfo.devTypeCode,
@@ -410,7 +410,7 @@
             // 列表显示处理--end
             // 数据字典
             getDicInfo(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
             },
         }
     };

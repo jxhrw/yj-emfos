@@ -39,7 +39,7 @@ export default {
         // 查询服务器时间信息
         getDateInfo() {
             let host = this.$config.efoms_HOST;
-            let method = this.$config.getServiceTimeReal_GET;
+            let method = '/date/getServiceTimeReal';
             let token = Common.getQueryString("token");
             this.$api.getMethod(host, method, {}, token).then(res => {
                 if (res.appCode == 0) {
@@ -50,7 +50,7 @@ export default {
         // 获取用户信息
         getUserInfo() {
             let host = this.$config.efoms_HOST;
-            let method = this.$config.selectUser_GET;
+            let method = '/userCheck/selectUser';
             let token = Common.getQueryString("token");
             this.$api.getMethod(host, method, {token: token}, token).then(res => {
                 if (res.appCode == 0) {

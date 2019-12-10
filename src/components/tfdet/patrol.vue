@@ -186,7 +186,7 @@ export default {
     mounted() {
         this.token = Common.getQueryString("token");
         this.pageHost = this.$config.efoms_HOST;
-        this.pageMethods = this.$config.getCheckRecordInfoPage_GET;
+        this.pageMethods = '/checkRecord/getCheckRecordInfoPage';
         this.getLifePatrol();
         // 巡检结果
         this.getDicInfo('DEVICERESULT').then(res => {
@@ -217,7 +217,7 @@ export default {
             var data = [];
             let barColor = '';
             let host = this.$config.efoms_HOST;
-            let method = this.$config.getDevCheckTimesLine_GET;
+            let method = '/AssetInfo/getDevCheckTimesLine';
             let time = parseInt(sessionStorage.getItem("serviceTime"));
             let monthOrDay = "";
             let beginTime = "";
@@ -339,7 +339,7 @@ export default {
         },
         // 数据字典
         getDicInfo(parentCode) {
-            return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, {token: this.token, data: JSON.stringify({parentCode: parentCode})});
+            return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', {token: this.token, data: JSON.stringify({parentCode: parentCode})});
         }
     }
 };

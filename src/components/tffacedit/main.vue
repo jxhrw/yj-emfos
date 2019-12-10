@@ -687,79 +687,79 @@
                         break;
                 }
                 // 设施类型
-                this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSCLASS' }).then(res => {
+                this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSCLASS' }).then(res => {
                     if (res.appCode == 0) { this.devcategoryList = res.resultList; }
                 });
             }
 
             // 生产厂家
-            this.getDicInfo(this.$config.getDeviceDic_GET, { 'parentCode': 'DEVICEFACTORY' }).then(res => {
+            this.getDicInfo('/DeviceDic/getDeviceDic.htm', { 'parentCode': 'DEVICEFACTORY' }).then(res => {
                 if (res.appCode == 0) { this.factoryList = res.resultList; }
             });
             // 建设项目
-            this.getDicInfo(this.$config.getDeviceDic_GET, { 'parentCode': 'DEVICEPROJECT' }).then(res => {
+            this.getDicInfo('/DeviceDic/getDeviceDic.htm', { 'parentCode': 'DEVICEPROJECT' }).then(res => {
                 if (res.appCode == 0) { this.buildingProjectsList = res.resultList; }
             });
             // 建设单位
-            this.getDicInfo(this.$config.getDeviceDic_GET, { 'parentCode': 'DEVICECOMPANY' }).then(res => {
+            this.getDicInfo('/DeviceDic/getDeviceDic.htm', { 'parentCode': 'DEVICECOMPANY' }).then(res => {
                 if (res.appCode == 0) { this.projectUnitList = res.resultList; }
             });
             // 运维单位
-            this.getDicInfo('/ubms-server/OpsDeptInfo/getOpsDetpTree.htm', {}).then(res => {
+            this.getDicInfo('/OpsDeptInfo/getOpsDetpTree.htm', {}).then(res => {
                 if (res.appCode == 0) { this.safeguardUnitList = res.resultList; }
             });
 
             if (!this.isReadonly && true) {
                 // 设施类型
-                this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSCLASS' }).then(res => {
+                this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSCLASS' }).then(res => {
                     if (res.appCode == 0) { this.devcategoryList = res.resultList; }
                 });
                 // 维护单位
-                this.getDicInfo(this.$config.getDeptInfo_GET, {}).then(res => {
+                this.getDicInfo('/DeptInfo/getDeptInfo.htm', {}).then(res => {
                     if (res.appCode == 0) { this.safeguardUnitList = res.resultList; }
                 });
                 // 所属道路
-                this.getDicInfo(this.$config.getRoadInfo_GET, {}).then(res => {
+                this.getDicInfo('/RoadInfo/getRoadInfo.htm', {}).then(res => {
                     if (res.appCode == 0) { this.roadList = res.resultList; }
                 });
                 // 所属路段
-                this.getDicInfo(this.$config.getBlockName_GET, {}).then(res => {
+                this.getDicInfo('/BlockInfo/getBlockName.htm', {}).then(res => {
                     if (res.appCode == 0) { this.roadSectionList = res.resultList; }
                 });
                 // 所属路口
-                this.getDicInfo(this.$config.getCrossName_GET, {}).then(res => {
+                this.getDicInfo('/CrossInfo/getCrossName.htm', {}).then(res => {
                     if (res.appCode == 0) { this.crossList = res.resultList; }
                 });
                 // 管理部门
-                this.getDicInfo(this.$config.ubms_getDeptTree_GET, {}).then(res => {
+                this.getDicInfo('/DeptInfo/getDeptTree.htm', {}).then(res => {
                     if (res.appCode == 0) { this.managemList = res.resultList; }
                 });
                 // 品牌
-                this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'BRANDCODE' }).then(res => {
+                this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'BRANDCODE' }).then(res => {
                     if (res.appCode == 0) { this.brandList = res.resultList; }
                 });
                 // // 通讯方式
-                // this.getDicInfo(this.$config.dev_getDicInfo_GET, {'parentCode': 'SIGNSCONNECT'}).then(res => {
+                // this.getDicInfo('/DeviceDic/getDicInfo.htm', {'parentCode': 'SIGNSCONNECT'}).then(res => {
                 //     if (res.appCode == 0) { this.comWayList = res.resultList; }
                 // });
                 // // 通讯协议
-                // this.getDicInfo(this.$config.dev_getDicInfo_GET, {'parentCode': 'MODBUSRTU'}).then(res => {
+                // this.getDicInfo('/DeviceDic/getDicInfo.htm', {'parentCode': 'MODBUSRTU'}).then(res => {
                 //     if (res.appCode == 0) { this.comTreatyList = res.resultList; }
                 // });
                 // // 网络类型
-                // this.getDicInfo(this.$config.dev_getDicInfo_GET, {'parentCode': 'NETMODE'}).then(res => {
+                // this.getDicInfo('/DeviceDic/getDicInfo.htm', {'parentCode': 'NETMODE'}).then(res => {
                 //     if (res.appCode == 0) { this.comNetTypeList = res.resultList; }
                 // });
                 // 支持方式
-                this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSSTRUCT' }).then(res => {
+                this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSSTRUCT' }).then(res => {
                     if (res.appCode == 0) { this.supportModeList = res.resultList; }
                 });
                 // 朝向
-                this.getDicInfo(this.$config.trf_getDicInfo_GET, { 'parentCode': 'ROADDIRECT' }).then(res => {
+                this.getDicInfo('/TrafficDic/getDicInfo.htm', { 'parentCode': 'ROADDIRECT' }).then(res => {
                     if (res.appCode == 0) { this.orientationList = res.resultList; }
                 });
                 // 责任人
-                // this.getDicInfo(this.$config.getPersonInfo_GET, {}).then(res => {
+                // this.getDicInfo('/Person/getPersonInfo.htm', {}).then(res => {
                 //     if (res.appCode == 0) { this.personList = res.resultList; }
                 // });
 
@@ -797,29 +797,29 @@
             selectDevcategory(newVal, oldVal) {
                 if (!this.isReadonly) {
                     // 设施子类型
-                    this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': newVal }).then(res => {
+                    this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': newVal }).then(res => {
                         if (res.appCode == 0) { this.signsTypeList = res.resultList; }
                     });
                     switch (newVal) {
                         case "SIGNSCLASS02": // 交通标线
                             // 功能
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSABILITY' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSABILITY' }).then(res => {
                                 if (res.appCode == 0) { this.powerList = res.resultList; }
                             });
                             // 设置方式
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSMODEL' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSMODEL' }).then(res => {
                                 if (res.appCode == 0) { this.setModeList = res.resultList; }
                             });
                             // 形态
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSFORM' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSFORM' }).then(res => {
                                 if (res.appCode == 0) { this.formList = res.resultList; }
                             });
                             // 颜色
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSCOLOR' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSCOLOR' }).then(res => {
                                 if (res.appCode == 0) { this.colorList = res.resultList; }
                             });
                             // 涂料
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSCOATING' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSCOATING' }).then(res => {
                                 if (res.appCode == 0) { this.coatingList = res.resultList; }
                             });
                             // 反光
@@ -827,29 +827,29 @@
                             break;
                         case "SIGNSCLASS03": // 交通护栏
                             // 材质
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSMATERIAL' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSMATERIAL' }).then(res => {
                                 if (res.appCode == 0) { this.materialList = res.resultList; }
                             });
                             break;
                         case "SIGNSCLASS01": // 交通标志
                             // 显示位置
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSLOCATION' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSLOCATION' }).then(res => {
                                 if (res.appCode == 0) { this.positionList = res.resultList; }
                             });
                             // 光学特性
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSOPTICAL' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSOPTICAL' }).then(res => {
                                 if (res.appCode == 0) { this.opticalList = res.resultList; }
                             });
                             // 显示方式
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSDISPLAY' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSDISPLAY' }).then(res => {
                                 if (res.appCode == 0) { this.displayList = res.resultList; }
                             });
                             // 时效
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSVALIDITY' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSVALIDITY' }).then(res => {
                                 if (res.appCode == 0) { this.prescriptionList = res.resultList; }
                             });
                             // 强制性
-                            this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSFORCE' }).then(res => {
+                            this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSFORCE' }).then(res => {
                                 if (res.appCode == 0) { this.mandatoryList = res.resultList; }
                             });
                             break;
@@ -978,7 +978,7 @@
                 if (!this.isMustFill()) { return; }
                 switch (this.pageTypeCode) {
                     case "REPDEVTYPE21": // 交通标线
-                        method = this.isAdd ? this.$config.addMarkingInfo_POST : this.$config.editMarkingInfo_POST;
+                        method = this.isAdd ? '/markingInfo/addMarkingInfo.htm' : '/markingInfo/editMarkingInfo.htm';
                         obj.markingId = this.facilityId;
                         obj.markingName = this.devName;
                         obj.usage = this.selectPower;
@@ -991,7 +991,7 @@
                         obj.isReflects = this.selectLight;
                         break;
                     case "REPDEVTYPE22": // 交通护栏
-                        method = this.isAdd ? this.$config.addRailingInfo_POST : this.$config.editRailingInfo_POST;
+                        method = this.isAdd ? '/RailingInfo/addRailingInfo.htm' : '/RailingInfo/editRailingInfo.htm';
                         obj.railingId = this.facilityId;
                         obj.railingName = this.devName;
                         obj.length = this.hllength;
@@ -999,7 +999,7 @@
                         obj.textire = this.selectMaterial;
                         break;
                     case "REPDEVTYPE23": // 交通标志
-                        method = this.isAdd ? this.$config.addSignInfo_POST : this.$config.editSignInfo_POST;
+                        method = this.isAdd ? '/SignInfo/addSignInfo.htm' : '/SignInfo/editSignInfo.htm';
                         obj.signId = this.facilityId;
                         obj.signName = this.devName;
                         obj.showLocation = this.selectPosition;
@@ -1054,15 +1054,15 @@
                 obj.signsType = signsType;
                 switch (this.pageTypeCode) {
                     case "REPDEVTYPE21": // 交通标线
-                        method = this.$config.getMarkingInfo_GET;
+                        method = '/markingInfo/getMarkingInfo.htm';
                         obj.markingId = facilityId;
                         break;
                     case "REPDEVTYPE22": // 交通护栏
-                        method = this.$config.getRailingInfo_GET;
+                        method = '/RailingInfo/getRailingInfo.htm';
                         obj.railingId = facilityId;
                         break;
                     case "REPDEVTYPE23": // 交通标志
-                        method = this.$config.getSignInfo_GET;
+                        method = '/SignInfo/getSignInfo.htm';
                         obj.signId = facilityId;
                         break;
                     default:
@@ -1162,7 +1162,7 @@
                             // 管理部门
                             this.selectManagemCodeList = [resObj.manageDept];
                             this.selectManagemList = [resObj.oppmDeptName];
-                            // this.getDicInfo(this.$config.getDeptInfo_GET, {}).then(res => {
+                            // this.getDicInfo('/DeptInfo/getDeptInfo.htm', {}).then(res => {
                             //   if (res.appCode == 0) {
                             //     let arr = res.resultList.filter(item => item.deptId == resObj.manageDept);
                             //     this.selectManagemList = [arr[0].deptName];
@@ -1326,14 +1326,14 @@
                 }
             },
             getRegionTree(parentCode) {
-                return this.$api.getMethod(this.$config.efoms_HOST, this.$config.getRegionTree_GET, { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
+                return this.$api.getMethod(this.$config.efoms_HOST, '/ubmsService/getRegionTree', { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
             },
             getDeptTree(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, "/ubms-server/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, "/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
             },
             getDicInfo(method, prarms) {
                 let host = this.$config.ubms_HOST;
-                // let method = this.$config.getRoadInfo_GET;
+                // let method = '/RoadInfo/getRoadInfo.htm';
                 let obj = {
                     token: this.token,
                     data: JSON.stringify(prarms)

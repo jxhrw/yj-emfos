@@ -249,7 +249,7 @@ export default {
     mounted() {
         this.token = Common.getQueryString("token");
         this.pageHost = this.$config.efoms_HOST;
-        this.pageMethods = this.$config.getWorkordersInfoPage_GET;
+        this.pageMethods = '/workorders/getWorkordersInfoPage';
         this.getLifeRepair();
         // 故障类型
         this.getDicInfo(this.contentInfo.facilityTypeCode).then(res => {
@@ -276,7 +276,7 @@ export default {
             var date = [];
             var data = [];
             let host = this.$config.efoms_HOST;
-            let method = this.$config.getDevFaultLine_GET;
+            let method = '/AssetInfo/getDevFaultLine';
             let time = sessionStorage.getItem("serviceTime");
             let monthOrDay = "";
             let beginTime = "";
@@ -330,7 +330,7 @@ export default {
         // 生成饼图
         createPieChart() {
             let host = this.$config.efoms_HOST;
-            let method = this.$config.getDevFaultPie_GET;
+            let method = '/AssetInfo/getDevFaultPie';
             let time = sessionStorage.getItem("serviceTime");
             let beginTime = "";
             let endTime = "";
@@ -413,7 +413,7 @@ export default {
         },
         // 数据字典
         getDicInfo(parentCode) {
-            return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, {token: this.token, data: JSON.stringify({parentCode: parentCode})});
+            return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', {token: this.token, data: JSON.stringify({parentCode: parentCode})});
         }
     }
 };

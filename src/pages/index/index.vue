@@ -38,7 +38,7 @@
             // 获取用户信息
             getUserInfo() {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.selectUser_GET;
+                let method = '/userCheck/selectUser';
                 let token = Common.getQueryString("token");
                 this.$api.getMethod(host, method, { token: token }, token).then(res => {
                     if (res.appCode == 0) {
@@ -197,7 +197,7 @@
         min-width: 1300px;
     }
 
-    .el-menu--popup {
+    body .el-menu--popup {
         min-width: 140px;
     }
 

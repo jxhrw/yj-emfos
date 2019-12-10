@@ -363,14 +363,14 @@ export default {
     getRegionTree(parentCode) {
       return this.$api.getMethod(
         this.$config.efoms_HOST,
-        this.$config.getRegionTree_GET,
+        '/ubmsService/getRegionTree',
         { token: this.token, data: JSON.stringify({ regionId: parentCode }) }
       );
     },
     getDeptTree(parentCode) {
       return this.$api.getMethod(
         this.$config.ubms_HOST,
-        "/ubms-server/DeptInfo/getDeptTree.htm",
+        "/DeptInfo/getDeptTree.htm",
         {
           token: this.token,
           data: JSON.stringify({ regionId: parentCode })
@@ -381,7 +381,7 @@ export default {
     getDicInfo(parentCode) {
       return this.$api.getMethod(
         this.$config.ubms_HOST,
-        this.$config.getDeviceDic_GET,
+        '/DeviceDic/getDeviceDic.htm',
         { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
       );
     },
@@ -389,14 +389,14 @@ export default {
     devGetDicInfo(parentCode) {
       return this.$api.getMethod(
         this.$config.ubms_HOST,
-        this.$config.dev_getDicInfo_GET,
+        '/DeviceDic/getDicInfo.htm',
         { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
       );
     },
     // 道路
     getRoad() {
       let host = this.$config.ubms_HOST;
-      let method = this.$config.getRoadInfo_GET;
+      let method = '/RoadInfo/getRoadInfo.htm';
       let obj = {
         token: this.token,
         data: JSON.stringify({})

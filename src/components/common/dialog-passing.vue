@@ -76,7 +76,7 @@ export default {
         },
         getPageVehSearFuc(id) {
             let host = this.$config.efoms_HOST;
-            let method = this.$config.getPageVehSear_GET;
+            let method = '/otherSystem/getPageVehSear';
             let queryConditions = {
                 bayonetId: id,
                 token: this.token,

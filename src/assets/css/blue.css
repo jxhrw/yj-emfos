@@ -17,7 +17,7 @@
 
 .el-menu-vertical-demo .el-submenu.is-active .el-submenu__title,
 .el-menu-vertical-demo .el-submenu.is-opened .el-submenu__title {
-    background-color: #e4ebf1 !important;
+    background-color: #bfddf7 !important;
 }
 
 .el-menu-vertical-demo.el-menu--collapse .el-submenu.is-active .el-submenu__title {
@@ -26,7 +26,7 @@
 
 .el-menu-vertical-demo .el-submenu.is-active .el-menu-vertical-demo,
 .el-menu-vertical-demo .el-submenu.is-opened .el-menu-vertical-demo {
-    background-color: #e4ebf1 !important;
+    background-color: #bfddf7 !important;
 }
 
 .el-menu-vertical-demo .el-menu-item.is-active,

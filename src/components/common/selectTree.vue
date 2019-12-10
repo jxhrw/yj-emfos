@@ -94,7 +94,7 @@
                 this.mPointsInfo = [];
                 if (this.name) {
                     this.isSearch = true;
-                    this.$api.get(`${this.$config.ubms_HOST}/ubms-server/OffsiteInfo/getOffsiteInfo.htm`, { token: this.token, data: JSON.stringify({ offsiteName: this.name, pageSize: 9999, regionId: "", sceneCode: "" }) }, '').then(res => {
+                    this.$api.get(`${this.$config.ubms_HOST}/OffsiteInfo/getOffsiteInfo.htm`, { token: this.token, data: JSON.stringify({ offsiteName: this.name, pageSize: 9999, regionId: "", sceneCode: "" }) }, '').then(res => {
                         if (res.appCode == '0') {
                             this.pointList = [];
                             res.resultList.map(val => {
@@ -110,7 +110,7 @@
                 this.token = Common.getQueryString("token");
                 if (node.level === 0) {
                     let a = [];
-                    // this.$api.get(`${this.$config.ubms_HOST}/ubms-server/RegionInfo/getRegionInfo.htm`, { token: this.token, data: JSON.stringify({ "parentId": "360400" }) }, '').then(res => {
+                    // this.$api.get(`${this.$config.ubms_HOST}/RegionInfo/getRegionInfo.htm`, { token: this.token, data: JSON.stringify({ "parentId": "360400" }) }, '').then(res => {
                     //     if (res.appCode == '0') {
                     //         res.resultList.map(val => {
                     //             a.push({ id: val.regionId, name: val.regionName });
@@ -142,7 +142,7 @@
                 if (node.level > 0) {
                     if (node.data.id) {
                         let b = [];
-                        this.$api.get(`${this.$config.ubms_HOST}/ubms-server/OffsiteInfo/getOffsiteInfo.htm`, { token: this.token, data: JSON.stringify({ regionId: node.data.id, sceneCode: "" }) }, '').then(res => {
+                        this.$api.get(`${this.$config.ubms_HOST}/OffsiteInfo/getOffsiteInfo.htm`, { token: this.token, data: JSON.stringify({ regionId: node.data.id, sceneCode: "" }) }, '').then(res => {
                             if (res.appCode == '0') {
                                 res.resultList.map(val => {
                                     b.push({ offsiteId: val.offsiteId, name: val.offsiteName, leaf: true });
@@ -160,7 +160,7 @@
                 }
             },
             getRegionTree(parentCode) {
-                return this.$api.getMethod(this.$config.efoms_HOST, this.$config.getRegionTree_GET, {
+                return this.$api.getMethod(this.$config.efoms_HOST, '/ubmsService/getRegionTree', {
                     token: this.token,
                     data: JSON.stringify({
                         regionId: parentCode

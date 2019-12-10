@@ -199,7 +199,7 @@
             },
             // 数据字典
             getDicInfo(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, '/ubms-server/PublicDic/getPublicDic.htm', { token: this.token, data: JSON.stringify({ "parentCode": parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, '/PublicDic/getPublicDic.htm', { token: this.token, data: JSON.stringify({ "parentCode": parentCode }) });
             },
             currentSelect(e) {},
             goBack() {

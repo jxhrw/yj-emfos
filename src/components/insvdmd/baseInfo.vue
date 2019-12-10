@@ -266,7 +266,7 @@ export default {
   mounted() {
     this.token = Common.getQueryString("token");
     this.pointHost = this.$config.efoms_HOST;
-    this.pointMethods = this.$config.selectVideoByPage_GET;
+    this.pointMethods = '/deviceDetail/selectVideoByPage';
     this.getRegionTree(null).then(res => {
         if (res.appCode == 0) { this.regionList = res.resultList; }
     });
@@ -473,7 +473,7 @@ export default {
     // 视频添加关联
     insertVideoRelation(arr) {
         let host = this.$config.efoms_HOST;
-        let method = this.$config.insertVideoRelationInfo_POST;
+        let method = '/videoRelation/insertVideoRelationInfo';
         this.$api.postMethod(host, method, arr, this.token, 'noContentType')
         .then(res => {
             if (res.appCode == 0) {
@@ -490,7 +490,7 @@ export default {
     // 视频删除关联
     deleteVideoReletion(arr) {
         let host = this.$config.efoms_HOST;
-        let method = this.$config.deleteVideoReletionByGroupIdAndVideoId_POST;
+        let method = '/videoRelation/deleteVideoReletionByGroupIdAndVideoId';
         this.$api.postMethod(host, method, arr, this.token, 'noContentType')
         .then(res => {
             if (res.appCode == 0) {
@@ -535,8 +535,8 @@ export default {
     },
     submitAddGroup() {
         let host = this.$config.efoms_HOST;
-        let method = this.$config.insertVideoGroupInfo_POST;
-        method = this.isAddGroup ? method : this.$config.updateVideoGroupInfo_POST;
+        let method = '/videoGroup/insertVideoGroupInfo';
+        method = this.isAddGroup ? method : '/videoGroup/updateVideoGroupInfo';
         this.$api.postMethod(host, method, this.addGroupInfo, this.token, 'noContentType')
         .then(res => {
             if (res.appCode == 0) {
@@ -554,7 +554,7 @@ export default {
     },
     submitDeleteGroup(data) {
         let host = this.$config.efoms_HOST;
-        let method = this.$config.deleteVideoGroupInfo_DELETE;
+        let method = '/videoGroup/deleteVideoGroupInfo';
         this.$confirm('此操作将删除分组：' + data.videoGroupName + ', 是否继续?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
@@ -581,7 +581,7 @@ export default {
     getVideoGroupInfo(obj) {
         let data = obj || {};
         let host = this.$config.efoms_HOST;
-        let method = this.$config.getVideoGroupInfoList_GET;
+        let method = '/videoGroup/getVideoGroupInfoList';
         this.$api.getMethod(host, method, data, this.token)
         .then(res => {
             if (res.appCode == 0) {
@@ -605,10 +605,10 @@ export default {
         }
     },
     getRegionInfo(parentCode) {
-        return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getRegionInfo_GET, {token: this.token, data: JSON.stringify({parentCode: parentCode})});
+        return this.$api.getMethod(this.$config.ubms_HOST, '/RegionInfo/getRegionInfo.htm', {token: this.token, data: JSON.stringify({parentCode: parentCode})});
     },
     getRegionTree(parentCode) {
-         return this.$api.getMethod(this.$config.efoms_HOST, this.$config.getRegionTree_GET, {token: this.token, data: JSON.stringify({regionId: parentCode})});
+         return this.$api.getMethod(this.$config.efoms_HOST, '/ubmsService/getRegionTree', {token: this.token, data: JSON.stringify({regionId: parentCode})});
     },
     searchTable() {
         this.getVideoGroupInfo({key: this.keyVal, devAreaCode: this.selectRegionCode});

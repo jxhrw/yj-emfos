@@ -263,7 +263,7 @@ export default {
     mounted() {
         this.token = Common.getQueryString("token");
         this.pageHost = this.$config.efoms_HOST;
-        this.pageMethods = this.$config.getDeviceWranInfoPage_GET;
+        this.pageMethods = '/wran/getDeviceWranInfoPage';
         this.getLifeReport();
         // 报警类型
         this.getDicInfo('DEVWRANTYPE').then(res => {
@@ -302,7 +302,7 @@ export default {
             var data = [];
             let barColor = '';
             let host = this.$config.efoms_HOST;
-            let method = this.$config.getDevWranTimesLine_GET;
+            let method = '/AssetInfo/getDevWranTimesLine';
             let time = parseInt(sessionStorage.getItem("serviceTime"));
             let monthOrDay = "";
             let beginTime = "";
@@ -388,7 +388,7 @@ export default {
         // 生成饼图
         createPieChart() {
             let host = this.$config.efoms_HOST;
-            let method = this.$config.getDevWarnTypePie_GET;
+            let method = '/AssetInfo/getDevWarnTypePie';
             let time = parseInt(sessionStorage.getItem("serviceTime"));
             let monthOrDay = "";
             let beginTime = "";
@@ -486,7 +486,7 @@ export default {
         },
         // 数据字典
         getDicInfo(parentCode) {
-            return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, {token: this.token, data: JSON.stringify({parentCode: parentCode})});
+            return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', {token: this.token, data: JSON.stringify({parentCode: parentCode})});
         }
     }
 };

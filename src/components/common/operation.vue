@@ -203,7 +203,7 @@ export default {
     fackbackWorkorders() {
       var url =
         this.$config.efoms_HOST +
-        this.$config.fackbackWorkorders_GET;
+        '/workordersRecord/fackbackWorkorders';
       var header = {
         token: this.token
       };
@@ -226,11 +226,11 @@ export default {
           if (res.appCode == 0) {
             this.options_Repairsource = res.resultList;
           } else {
-            Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+            Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
           }
         })
         .catch(err => {
-          Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+          Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
           console.log(err);
         });
     },
@@ -238,7 +238,7 @@ export default {
     postponeWorkorders() {
       var url =
         this.$config.efoms_HOST +
-        this.$config.postponeWorkorders_GET;
+        '/workordersRecord/postponeWorkorders';
       var header = {
         token: this.token
       };
@@ -257,17 +257,17 @@ export default {
           if (res.appCode == 0) {
             this.options_Repairsource = res.resultList;
           } else {
-            Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+            Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
           }
         })
         .catch(err => {
-          Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+          Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
           console.log(err);
         });
     },
     getDicInfo(parentCode) {
       var url =
-        this.$config.ubms_HOST + this.$config.getDeviceDic_GET;
+        this.$config.ubms_HOST + '/DeviceDic/getDeviceDic.htm';
       var header = {
         "Content-Type": "application/x-www-form-urlencoded"
       };
@@ -279,7 +279,7 @@ export default {
     },
     getRepdevtype(selectRepdevcategory) {
       var url =
-        this.$config.ubms_HOST + this.$config.getDeviceDic_GET;
+        this.$config.ubms_HOST + '/DeviceDic/getDeviceDic.htm';
       var header = {
         "Content-Type": "application/x-www-form-urlencoded"
       };
@@ -298,11 +298,11 @@ export default {
           if (res.appCode == 0) {
             this.options_Repdevtype = res.resultList;
           } else {
-            Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+            Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
           }
         })
         .catch(err => {
-          Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+          Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
           console.log(err);
         });
     },
@@ -330,7 +330,7 @@ export default {
       var file = document.getElementById(fileId).files[0];
       formData.append("file", file);
       var url =
-        this.$config.efoms_HOST + this.$config.uploadFile_POST;
+        this.$config.efoms_HOST + '/file/uploadFile';
       var header = {
         "Content-Type": "application/x-www-form-urlencoded",
         token: this.token
@@ -356,17 +356,17 @@ export default {
                 break;
             }
           } else {
-            Common.printErrorLog(this.$config.ubms_HOST, this.$config.uploadFile_POST);
+            Common.printErrorLog(this.$config.ubms_HOST, '/file/uploadFile');
           }
         })
         .catch(err => {
-          Common.printErrorLog(this.$config.ubms_HOST, this.$config.uploadFile_POST);
+          Common.printErrorLog(this.$config.ubms_HOST, '/file/uploadFile');
           console.log(err);
         });
     },
     delFiles(e) {
       var url =
-        this.$config.efoms_HOST + this.$config.deleteFile_GET;
+        this.$config.efoms_HOST + '/file/deleteFile';
       var header = {
         "Content-Type": "application/x-www-form-urlencoded"
       };
@@ -383,11 +383,11 @@ export default {
         .then(res => {
           if (res.appCode == 0) {
           } else {
-            Common.printErrorLog(this.$config.efoms_HOST, this.$config.deleteFile_GET);
+            Common.printErrorLog(this.$config.efoms_HOST, '/file/deleteFile');
           }
         })
         .catch(err => {
-          Common.printErrorLog(this.$config.efoms_HOST, this.$config.deleteFile_GET);
+          Common.printErrorLog(this.$config.efoms_HOST, '/file/deleteFile');
           console.log(err);
         });
     },

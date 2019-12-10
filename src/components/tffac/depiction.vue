@@ -121,7 +121,7 @@
         mounted() {
             this.token = Common.getQueryString("token");
             this.pageHost = this.$config.efoms_HOST;
-            this.pageMethods = this.$config.selectFacilitySimpleInfoPage_GET;
+            this.pageMethods = '/deviceDetail/selectFacilitySimpleInfoPage';
             this.queryConditions.facilityTypeCode = sessionStorage.getItem('tfFacType') || 'REPDEVTYPE21';
             this.selectRepairsInfoPage();
             Bus.$on("queryConditions", value => {
@@ -140,7 +140,7 @@
         methods: {
             exportExcel() {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.exportfacilityInfo_GET;
+                let method = '/export/exportfacilityInfo';
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         window.open(res.path);
@@ -230,17 +230,17 @@
                 let obj = {};
                 switch (this.baseInfo.facilityTypeCode) {
                     case "REPDEVTYPE21": // 交通标线
-                        method = this.$config.editMarkingInfo_POST;
+                        method = '/markingInfo/editMarkingInfo.htm';
                         obj.markingId = this.baseInfo.facilityId;
                         obj.deviceStatus = status;
                         break;
                     case "REPDEVTYPE22": // 交通护栏
-                        method = this.$config.editRailingInfo_POST;
+                        method = '/RailingInfo/editRailingInfo.htm';
                         obj.railingId = this.baseInfo.facilityId;
                         obj.deviceStatus = status;
                         break;
                     case "REPDEVTYPE23": // 交通标志
-                        method = this.$config.editSignInfo_POST;
+                        method = '/SignInfo/editSignInfo.htm';
                         obj.signId = this.baseInfo.facilityId;
                         obj.deviceStatus = status;
                         break;
@@ -276,7 +276,7 @@
                         break;
                     case 'normal':
                         let host = this.$config.efoms_HOST;
-                        let method = this.$config.updateDevStatusInfo_PUT;
+                        let method = '/devStatus/updateDevStatusInfo';
                         let obj = {
                             facilityId: this.baseInfo.facilityId,
                             facilityTypeCode: this.baseInfo.facilityTypeCode,

@@ -143,7 +143,7 @@
     mounted() {
       this.token = Common.getQueryString("token");
       this.pageHost = this.$config.efoms_HOST;
-      this.pageMethods = this.$config.getCheckRecordInfoPage_GET;
+      this.pageMethods = '/checkRecord/getCheckRecordInfoPage';
       this.selectRepairsInfoPage();
       Bus.$on("queryConditions", value => {
         this.queryConditions = value;
@@ -161,7 +161,7 @@
     methods: {
       exportExcel() {
         let host = this.$config.efoms_HOST;
-        let method = this.$config.exportCheckRecordInfo_GET;
+        let method = '/export/exportCheckRecordInfo';
         let obj = JSON.parse(JSON.stringify(this.queryConditions));
         this.$api.getMethod(host, method, obj, this.token).then(res => {
             window.open(res.path);

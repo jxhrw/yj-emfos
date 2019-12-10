@@ -417,26 +417,26 @@
                 this.searchTable();
             },
             getRegionTree(parentCode) {
-                return this.$api.getMethod(this.$config.efoms_HOST, this.$config.getRegionTree_GET, { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
+                return this.$api.getMethod(this.$config.efoms_HOST, '/ubmsService/getRegionTree', { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
             },
             // 数据字典
             getDicInfo(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
             },
             // 数据字典 - 基础信息
             devGetDicInfo(parentCode) {
                 return this.$api.getMethod(
                     this.$config.ubms_HOST,
-                    this.$config.dev_getDicInfo_GET, { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
+                    '/DeviceDic/getDicInfo.htm', { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
                 );
             },
             // 运维单位
             getOpsDetpTreeInfo() {
-                return this.$api.getMethod(this.$config.ubms_HOST, '/ubms-server/OpsDeptInfo/getOpsDetpTree.htm', { token: this.token, data: JSON.stringify({}) });
+                return this.$api.getMethod(this.$config.ubms_HOST, '/OpsDeptInfo/getOpsDetpTree.htm', { token: this.token, data: JSON.stringify({}) });
             },
             // 部门
             getDeptTree(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, "/ubms-server/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, "/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
             },
             searchTable() {
                 this.queryConditions = {
@@ -456,7 +456,7 @@
             selectRepairsInfoPage() {
                 this.isTableLoading = true;
                 let host = this.$config.efoms_HOST;
-                let method = '/efoms-rest/rsms/getRealServerPage';
+                let method = '/rsms/getRealServerPage';
                 this.$api
                     .getMethod(host, method, this.queryConditions, this.token)
                     .then(res => {
@@ -483,7 +483,7 @@
 
             exportExcel() {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.exportDeviceInfo_GET;
+                let method = '/export/exportDeviceInfo';
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         window.open(res.path);
@@ -557,30 +557,30 @@
                 let obj = {};
                 switch (this.baseInfo.serverType) {
                     case "REPDEVTYPE01": // 信号机
-                        method = this.$config.editSignalSiteInfo_POST;
+                        method = '/SignalSiteInfo/editSignalSiteInfo.htm';
                         obj.ssId = this.baseInfo.devId;
                         obj.deviceStatusCode = status;
                         break;
                     case "REPDEVTYPE02": // 视频监控
-                        method = this.$config.editVideoSiteInfo_POST;
+                        method = '/VideoSiteInfo/editVideoSiteInfo.htm';
                         obj.vdSiteId = this.baseInfo.devId;
                         obj.deviceStatusCode = status;
                         break;
                     case "REPDEVTYPE08": // 诱导屏
-                        method = this.$config.editLedInfo_POST;
+                        method = '/LedInfoController/editLedInfo.htm';
                         obj.ledId = this.baseInfo.devId;
                         obj.deviceStatusCode = status;
                         break;
                     case "REPDEVTYPE03": // 卡口
                     case "REPDEVTYPE04": // 电子警察
-                        method = this.$config.editOffsiteInfo_POST;
+                        method = '/OffsiteInfo/editOffsiteInfo.htm';
                         obj.offsiteId = this.baseInfo.devId;
                         obj.osstatusCode = status;
                         break;
                     case "REPDEVTYPE05": // 地磁
                     case "REPDEVTYPE06": // 线圈
                     case "REPDEVTYPE07": // 微波
-                        method = this.$config.editTrFlowDevInfo_POST;
+                        method = '/TrFlowInfoController/editTrFlowDevInfo.htm';
                         obj.trfDevId = this.baseInfo.devId;
                         obj.deviceStatusCode = status;
                         break;
@@ -669,7 +669,7 @@
             },
             delFiles(e) {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.deleteAssentFileInfo_GET;
+                let method = '/AssentFileInfo/deleteAssentFileInfo';
                 let obj = {
                     fileId: e.fileId
                 };
@@ -708,7 +708,7 @@
                 this.handleScrollData();
             },
             saveServerInfo() {
-                let host = this.$config.efoms_HOST + '/efoms-rest';
+                let host = this.$config.efoms_HOST + '';
                 let method = this.detailInfo.serverId ? '/rsms/server/updateServerInfo' : '/rsms/server/insertServerInfo';
                 this.$api.getMethod(host, method, this.detailInfo, this.token).then(res => {
                         if (res.appCode == 0) {

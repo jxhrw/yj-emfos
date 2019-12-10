@@ -341,7 +341,7 @@
                 };
                 this.islineLoading = true;
                 this.$api.get(
-                        `${this.$config.efoms_HOST}/efoms-rest/otherSystem/getDevWayRealFlow`, obj,
+                        `${this.$config.efoms_HOST}/otherSystem/getDevWayRealFlow`, obj,
                         null
                     )
                     .then(res => {
@@ -409,7 +409,7 @@
             },
             exportExcel() {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.exportCheckRecordInfo_GET;
+                let method = '/export/exportCheckRecordInfo';
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api
                     .getMethod(host, method, obj, this.token)

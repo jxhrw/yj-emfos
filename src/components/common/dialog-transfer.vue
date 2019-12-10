@@ -76,7 +76,7 @@
                 }
             },
             getDeptTree(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, "/ubms-server/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, "/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
             },
             submitCode() {
                 console.log(this.selectCode);

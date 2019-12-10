@@ -1,26 +1,36 @@
 {
     "ProjectName": ".",
-    "efoms_HOST": "http://192.168.91.158:10005",
-    "ubms_HOST": "http://192.168.91.121:8080",
-    "jtss_HOST": "http://192.168.106.130:8180",
+    "#00": "相关服务",
+    "efoms_HOST": "http://192.168.106.121:10005/efoms-rest",
+    "ubms_HOST": "http://192.168.106.130:8080/ubms-server",
+    "jtss_HOST": "http://192.168.106.130:8180/jtss-rest",
     "eqImg_HOST": "http://192.168.106.112/",
     "idcs_HOST": "http://192.168.106.129:8080/idcs-web",
     "collectionms_HOST": "http://192.168.106.134:8082",
-    "videoms_HOST": "http://192.168.106.138:8080/ejvideo",
-    "serverPushUrl": "http://192.168.91.130:6201/serverpush.js",
-    "signVideoUrl": "http://172.10.168.208:8888/XHKZ/imitate/linkToSimpleSignal?userName=xhkzs&pwd=000000&isControl=control&imsid=",
+    
+    "#01": "相关链接（信号机地址，监测系统地址等）",
+    "serverPushUrl": "http://192.168.106.132:6201/serverpush.js",
+    "loginUrl": "http://192.168.106.121:10006/efoms-web/",
     "visualizationUrl": "http://172.100.102.50:10007/efoms-web2",
-    "loginUrl": "http://192.168.91.158:10006/efoms-web/",
-    "mapConfig": "cmps_view",
-    "mapConfigAssets": "efoms",
-    "baseimgs": "http://192.168.106.129:8080/idcs-web/common/picView.jsp",
-    "mapImages_HOST": "http://192.168.104.102:8080/js/",
-    "mapSceneUrl": "http://192.168.103.120:8034/truevision/index.html",
+    "signVideoUrl": "http://172.10.168.208:8888/XHKZ/imitate/linkToSimpleSignal?userName=xhkzs&pwd=000000&isControl=control&imsid=",
+    
+    "#02": "视频相关",
     "webservice_url": "http://192.168.106.138:8080/ejvideo",
     "webservice_user": "admin",
     "webservice_pwd": "admin",
     "stream_ip": "192.168.106.138",
     "stream_port": "8080",
+
+    "#03": "图片代理",
+    "baseimgs": "http://192.168.106.129:8080/idcs-web/common/picView.jsp",
+
+    "#10": "公司地图相关",
+    "mapConfig": "cmps_view",
+    "mapConfigAssets": "efoms",
+    "mapImages_HOST": "http://192.168.104.102:8080/js/",
+    "mapSceneUrl": "http://192.168.103.120:8034/truevision/index.html",
+
+    "#11": "公司地图图层相关",
     "dev01": "信号控制",
     "dev02": "视频监控",
     "dev03": "交警卡口",
@@ -35,239 +45,7 @@
     "dev23": "标志标牌",
     "devBX": "标线数据",
     "devHL": "护栏数据",
-    "cityId": "610000",
-    "?getDeviceDic": "字典-设备类型",
-    "getDeviceDic_GET": "/ubms-server/DeviceDic/getDeviceDic.htm",
-    "?getRegionInfo": "字典-区域",
-    "getRegionInfo_GET": "/ubms-server/RegionInfo/getRegionInfo.htm",
-    "?getDeviceInfo": "字典-设备信息",
-    "getDeviceInfo_GET": "/ubms-server/Device/getDeviceInfo.htm",
-    "?getDeptInfo": "字典-部门",
-    "getDeptInfo_GET": "/ubms-server/DeptInfo/getDeptInfo.htm",
-    "?getPersonInfo": "字典-人员",
-    "getPersonInfo_GET": "/ubms-server/Person/getPersonInfo.htm",
-    "selectUser_GET": "/efoms-rest/userCheck/selectUser",
-    "getDevStatusInfo_GET": "/efoms-rest/repairs/devRepeatCheck",
-    "uploadFile_POST": "/efoms-rest/file/uploadFile",
-    "deleteFile_GET": "/efoms-rest/file/deleteFile",
-    "createRepairsInfo_POST": "/efoms-rest/repairs/createRepairsInfo",
-    "selectRepairsInfoPage_GET": "/efoms-rest/repairs/selectRepairsInfoPage",
-    "getWorkordersInfoPage_GET": "/efoms-rest/workorders/getWorkordersInfoPage",
-    "pressRepairsInfo_GET": "/efoms-rest/repairs/pressRepairsInfo",
-    "cancelRepairsInfo_GET": "/efoms-rest/repairs/cancelRepairsInfo",
-    "getRepairsInfoById_GET": "/efoms-rest/repairs/getRepairsInfoById",
-    "auditRepairsInfo_GET": "/efoms-rest/repairs/auditRepairsInfo",
-    "createWorkordersInfo_POST": "/efoms-rest/workorders/createWorkordersInfo",
-    "getWorkordersInfoById_GET": "/efoms-rest/workorders/getWorkordersInfoById",
-    "dispatchWorkorders_GET": "/efoms-rest/workordersRecord/dispatchWorkorders",
-    "applyWorkordersInfo_GET": "/efoms-rest/workorders/applyWorkordersInfo",
-    "fackbackWorkorders_GET": "/efoms-rest/workordersRecord/fackbackWorkorders",
-    "getWorkordersNoDispatchPage_GET": "/efoms-rest/workorders/getWorkordersNoDispatchPage",
-    "postponeWorkorders_GET": "/efoms-rest/workordersRecord/postponeWorkorders",
-    "sureWorkorders_GET": "/efoms-rest/workordersRecord/sureWorkorders",
-    "checkWorkorders_GET": "/efoms-rest/workordersRecord/checkWorkorders",
-    "getEvalItemList_GET": "/efoms-rest/evalItem/getEvalItemList",
-    "evaluateWorkorders_POST": "/efoms-rest/workordersRecord/evaluateWorkorders",
-    "exportWorkorders_GET": "/efoms-rest/export/exportWorkorders",
-    "exportRepairs_GET": "/efoms-rest/export/exportRepairs",
-    "devRepeatCheck_GET": "/efoms-rest/repairs/devRepeatCheck",
-    "repairsOperationCount_GET": "/efoms-rest/repairs/selectOperationCount",
-    "workordersOperationCount_GET": "/efoms-rest/workorders/selectOperationCount",
-    "pressWorkorders_GET": "/efoms-rest/workordersRecord/pressWorkorders",
-    "cancelWorkorders_GET": "/efoms-rest/workordersRecord/cancelWorkorders",
 
-    "?getCheckDeviceInfoPage": "巡检设备分页查询",
-    "getCheckDeviceInfoPage_GET": "/efoms-rest/checkDevice/getCheckDeviceInfoPage",
-
-    "?getCheckCount": "报警等数量查询-根据区域编号、设备编号、时间参数统计严重、警告、已报修、未巡检数量",
-    "getCheckCount_GET": "/efoms-rest/checkDevice/getCheckCount",
-
-    "?selectInsNumbers": "报警等数量查询",
-    "selectInsNumbers_GET": "/efoms-rest/inspection/selectInsNumbers",
-
-    "?getVideoGroupInfoList": "视频组树结构查询",
-    "getVideoGroupInfoList_GET": "/efoms-rest/videoGroup/getVideoGroupInfoList",
-
-    "?insertVideoGroupInfo": "新增视频组",
-    "insertVideoGroupInfo_POST": "/efoms-rest/videoGroup/insertVideoGroupInfo",
-
-    "?deleteVideoGroupInfo": "删除视频组",
-    "deleteVideoGroupInfo_DELETE": "/efoms-rest/videoGroup/deleteVideoGroupInfo",
-
-    "?updateVideoGroupInfo": "修改视频组",
-    "updateVideoGroupInfo_POST": "/efoms-rest/videoGroup/updateVideoGroupInfo",
-
-    "?selectVideoByPage": "查询视频详细分页信息（包含视频组是否选中）",
-    "selectVideoByPage_GET": "/efoms-rest/deviceDetail/selectVideoByPage",
-
-    "?insertVideoRelationInfo": "添加关联信息",
-    "insertVideoRelationInfo_POST": "/efoms-rest/videoRelation/insertVideoRelationInfo",
-
-    "?deleteVideoReletionByGroupIdAndVideoId": "根据关联对象集合删除关联信息（视频编号和分组编号）",
-    "deleteVideoReletionByGroupIdAndVideoId_POST": "/efoms-rest/videoRelation/deleteVideoReletionByGroupIdAndVideoId",
-
-
-    "?insertCheckRecordInfo": "新增巡检记录",
-    "insertCheckRecordInfo_PUT": "/efoms-rest/checkRecord/insertCheckRecordInfo",
-
-    "?reFreshCheckResult": "巡检结果重置",
-    "reFreshCheckResult_GET": "/efoms-rest/checkDevice/reFreshCheckResult",
-
-    "?getCheckRecordInfoPage": "巡检记录分页查询",
-    "getCheckRecordInfoPage_GET": "/efoms-rest/checkRecord/getCheckRecordInfoPage",
-
-    "?getCheckRecordInfoList": "巡检记录List查询",
-    "getCheckRecordInfoList_GET": "/efoms-rest/checkRecord/getCheckRecordInfoList",
-
-    "?getDeviceWranInfoPage": "查询报警分页信息",
-    "getDeviceWranInfoPage_GET": "/efoms-rest/wran/getDeviceWranInfoPage",
-
-    "?getServiceTimeReal": "查询服务器时间信息",
-    "getServiceTimeReal_GET": "/efoms-rest/date/getServiceTimeReal",
-
-    "?getPageVehSear": "查询卡口过车分页信息",
-    "getPageVehSear_GET": "/efoms-rest/otherSystem/getPageVehSear",
-
-    "?getDeptTree": "部门下拉树",
-    "getDeptTree_GET": "/efoms-rest/ubmsService/getDeptTree",
-
-    "?getRegionTree": "区域下拉树",
-    "getRegionTree_GET": "/efoms-rest/ubmsService/getRegionTree",
-
-    "?getOnProgList": "关联节目",
-    "getOnProgList_GET": "/efoms-rest/otherSystem/getOnProgList",
-
-    "?getDevWayRealFlow": "根据设备ID获取各车道流量数据",
-    "getDevWayRealFlow_GET": "/efoms-rest/otherSystem/getDevWayRealFlow",
-
-    "?selectAssetDevicePage": "设备分页查询信息（资产管理）",
-    "selectAssetDevicePage_GET": "/efoms-rest/deviceDetail/selectAssetDevicePage",
-
-    "?getPortRait": "资产画像查询",
-    "getPortRait_GET": "/efoms-rest/AssetInfo/getPortRait",
-
-    "?getDevCheckTimesLine": "查询巡检次数折线图",
-    "getDevCheckTimesLine_GET": "/efoms-rest/AssetInfo/getDevCheckTimesLine",
-
-    "?getDevFaultLine": "查询故障次数折线图",
-    "getDevFaultLine_GET": "/efoms-rest/AssetInfo/getDevFaultLine",
-
-    "?getDevFaultPie": "查询故障次数的饼形图",
-    "getDevFaultPie_GET": "/efoms-rest/AssetInfo/getDevFaultPie",
-
-    "?getDevWarnTypePie": "查询报警类型的饼形图",
-    "getDevWarnTypePie_GET": "/efoms-rest/AssetInfo/getDevWarnTypePie",
-
-    "?getDevWranTimesLine": "查询报警类型的折线图",
-    "getDevWranTimesLine_GET": "/efoms-rest/AssetInfo/getDevWranTimesLine",
-
-    "?getPageDeviceLogInfo": "日志信息分页查询",
-    "getPageDeviceLogInfo_GET": "/ubms-server/LogInfo/getPageDeviceLogInfo.htm",
-
-    "getSignalSiteInfo": "信号灯点位基础信息",
-    "getSignalSiteInfo_GET": "/ubms-server/SignalSiteInfo/getSignalSiteInfo.htm",
-    "?editSignalSiteInfo": "信号机修改",
-    "editSignalSiteInfo_POST": "/ubms-server/SignalSiteInfo/editSignalSiteInfo.htm",
-
-    "?getVideoSiteInfo": "视频监控点位信息",
-    "getVideoSiteInfo_GET": "/ubms-server/VideoSiteInfo/getVideoSiteInfo.htm",
-    "?editVideoSiteInfo": "视频监控修改",
-    "editVideoSiteInfo_POST": "/ubms-server/VideoSiteInfo/editVideoSiteInfo.htm",
-
-    "?getOffsiteInfo": "非现场点位查询",
-    "getOffsiteInfo_GET": "/ubms-server/OffsiteInfo/getOffsiteInfo.htm",
-    "?editOffsiteInfo": "非现场点位修改(卡口，电警)",
-    "editOffsiteInfo_POST": "/ubms-server/OffsiteInfo/editOffsiteInfo.htm",
-
-    "?getTrFlowDevInfo": "流量采集设备信息",
-    "getTrFlowDevInfo_GET": "/ubms-server/TrFlowInfoController/getTrFlowDevInfo.htm",
-    "?editTrFlowDevInfo": "流量采集设备修改(地磁，线圈，微波)",
-    "editTrFlowDevInfo_POST": "/ubms-server/TrFlowInfoController/editTrFlowDevInfo.htm",
-
-    "?getLedInfo": "交通信息板查询",
-    "getLedInfo_GET": "/ubms-server/LedInfoController/getLedInfo.htm",
-    "?editLedInfo": "诱导设备修改",
-    "editLedInfo_POST": "/ubms-server/LedInfoController/editLedInfo.htm",
-
-    "?getVideoDeviceRltInfo": "获取关联视频列表",
-    "getVideoDeviceRltInfo_GET": "/efoms-rest/ubmsService/getVideoDeviceRltInfo",
-
-    "?updateDevStatusInfo": "修改状态信息",
-    "updateDevStatusInfo_PUT": "/efoms-rest/devStatus/updateDevStatusInfo",
-
-    "?getAssentFileInfoList": "查询附件List",
-    "getAssentFileInfoList_GET": "/efoms-rest/AssentFileInfo/getAssentFileInfoList",
-
-    "?deleteAssentFileInfo": "根据附件编号删除附件",
-    "deleteAssentFileInfo_GET": "/efoms-rest/AssentFileInfo/deleteAssentFileInfo",
-
-    "?insertAssentFileInfo": "新增附件",
-    "insertAssentFileInfo_GET": "/efoms-rest/AssentFileInfo/insertAssentFileInfo",
-
-    "?selectFacilitySimpleInfoPage": "查询设备详细分页信息",
-    "selectFacilitySimpleInfoPage_GET": "/efoms-rest/deviceDetail/selectFacilitySimpleInfoPage",
-
-    "?dev_getDicInfo": "字典:通讯协议,网络类型,支持方式,通讯方式,品牌类型 等",
-    "dev_getDicInfo_GET": "/ubms-server/DeviceDic/getDicInfo.htm",
-
-    "?trf_getDicInfo": "字典:朝向 等",
-    "trf_getDicInfo_GET": "/ubms-server/TrafficDic/getDicInfo.htm",
-
-    "?ubms_getDeptTree": "维护单位 部门树",
-    "ubms_getDeptTree_GET": "/ubms-server/DeptInfo/getDeptTree.htm",
-
-    "?getCrossName": "路口",
-    "getCrossName_GET": "/ubms-server/CrossInfo/getCrossName.htm",
-
-    "?getRoadInfo": "道路",
-    "getRoadInfo_GET": "/ubms-server/RoadInfo/getRoadInfo.htm",
-
-    "?getBlockName": "路段",
-    "getBlockName_GET": "/ubms-server/BlockInfo/getBlockName.htm",
-
-    "?exportDeviceInfo": "设备信息导出",
-    "exportDeviceInfo_GET": "/efoms-rest/export/exportDeviceInfo",
-
-    "?exportfacilityInfo": "设施信息导出",
-    "exportfacilityInfo_GET": "/efoms-rest/export/exportfacilityInfo",
-
-    "?exportCheckRecordInfo": "巡检日志导出",
-    "exportCheckRecordInfo_GET": "/efoms-rest/export/exportCheckRecordInfo",
-
-    "?exportWorkordersNoDispatch": "运维管理导出",
-    "exportWorkordersNoDispatch_GET": "/efoms-rest/export/exportWorkordersNoDispatch",
-
-    "?getSignInfo": "标志详情查询",
-    "getSignInfo_GET": "/jtss-rest/SignInfo/getSignInfo.htm",
-
-    "?addSignInfo": "添加标志基础信息",
-    "addSignInfo_POST": "/jtss-rest/SignInfo/addSignInfo.htm",
-
-    "?editSignInfo": "修改标志基础信息",
-    "editSignInfo_POST": "/jtss-rest/SignInfo/editSignInfo.htm",
-
-    "?getRailingInfo": "护栏详情查询",
-    "getRailingInfo_GET": "/jtss-rest/RailingInfo/getRailingInfo.htm",
-
-    "?addRailingInfo": "添加护栏基础信息",
-    "addRailingInfo_POST": "/jtss-rest/RailingInfo/addRailingInfo.htm",
-
-    "?editRailingInfo": "修改护栏基础信息",
-    "editRailingInfo_POST": "/jtss-rest/RailingInfo/editRailingInfo.htm",
-
-    "?getMarkingInfo": "标线详情查询",
-    "getMarkingInfo_GET": "/jtss-rest/markingInfo/getMarkingInfo.htm",
-
-    "?addMarkingInfo": "添加标线基础信息",
-    "addMarkingInfo_POST": "/jtss-rest/markingInfo/addMarkingInfo.htm",
-
-    "?editMarkingInfo": "修改标线基础信息",
-    "editMarkingInfo_POST": "/jtss-rest/markingInfo/editMarkingInfo.htm",
-
-    "?selectFacilitySimpleInfoList": "查询设施列表信息",
-    "selectFacilitySimpleInfoList_GET": "/efoms-rest/deviceDetail/selectFacilitySimpleInfoList",
-
-    "?logout": "系统退出",
-    "logout_GET": "/efoms-rest/system/logout"
-
+    "#09": "其他",
+    "cityId": "610000"
 }

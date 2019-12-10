@@ -126,7 +126,7 @@
         },
         mounted() {
             // this.token = Common.getQueryString("token");
-            // this.$api.get(`${this.$config.efoms_HOST}/efoms-rest/uums/getRightInfo.htm`, { token: this.token }).then(res => {
+            // this.$api.get(`${this.$config.efoms_HOST}/uums/getRightInfo.htm`, { token: this.token }).then(res => {
             //     if (res.appCode == '0') {
             //         this.menus = res.resultList;
             //         sessionStorage.setItem('menus', JSON.stringify(this.menus));
@@ -224,6 +224,22 @@
 
     .icon-menu-tools.menu-statistics {
         background-image: url('../../assets/images/icon-menu-5.png');
+    }
+
+    .icon-menu-tools.menu-declare {
+        background-image: url('../../assets/images/icon-menu-6.png');
+    }
+
+    .icon-menu-tools.menu-examine {
+        background-image: url('../../assets/images/icon-menu-7.png');
+    }
+
+    .icon-menu-tools.menu-set {
+        background-image: url('../../assets/images/icon-menu-2.png');
+    }
+
+    .icon-menu-tools.menu-work {
+        background-image: url('../../assets/images/icon-menu-8.png');
     }
 
     .el-submenu .el-menu-item {

@@ -187,7 +187,7 @@
         created() {},
         mounted() {
             this.token = Common.getQueryString("token");
-            this.$api.getMethod(this.$config.efoms_HOST, '/efoms-rest/CheckReport/getDevAndFailSum', {}, this.token).then(res => {
+            this.$api.getMethod(this.$config.efoms_HOST, '/CheckReport/getDevAndFailSum', {}, this.token).then(res => {
                 if (res.appCode == 0) {
                     this.initMap(res.resultList);
                 } else {
@@ -343,11 +343,11 @@
                     list: JSON.stringify(arr)
                 };
                 let host = this.$config.efoms_HOST;
-                let methods = `/efoms-rest/UbmsAddInfo/addUbmsInfo`;
+                let methods = `/UbmsAddInfo/addUbmsInfo`;
 
                 if (this.currentInfo.id) {
                     obj.mapBean.devId = this.currentInfo.id;
-                    methods = `/efoms-rest/UbmsAddInfo/editFailityInfo`;
+                    methods = `/UbmsAddInfo/editFailityInfo`;
                 }
 
                 this.$api.getMethod(host, methods, obj, this.token).then(res => {
@@ -418,9 +418,9 @@
                 this.currentPage = val;
                 this.queryConditions.currentPage = this.currentPage;
                 let pageHost = this.$config.efoms_HOST;
-                let pageMethods = '/efoms-rest/checkDevice/getNewCheckPage';
+                let pageMethods = '/checkDevice/getNewCheckPage';
                 if (this.devTypeCode.indexOf('REPDEVTYPE2') > -1) {
-                    pageMethods = this.$config.selectFacilitySimpleInfoPage_GET;
+                    pageMethods = '/deviceDetail/selectFacilitySimpleInfoPage';
                 }
                 this.isTableLoading = true;
                 this.$api.getMethod(pageHost, pageMethods, this.queryConditions, this.token).then(res => {
@@ -613,7 +613,7 @@
             },
             getAssentFileFuc() {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.getAssentFileInfoList_GET;
+                let method = '/AssentFileInfo/getAssentFileInfoList';
                 let cate = this.devTypeCode.split('REPDEVTYPE')[1];
                 cate = parseInt(cate) > 20 ? 'ss' : '';
                 let obj = {
@@ -882,15 +882,15 @@
             },
             // 数据字典
             getDicInfo(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
             },
             // 数据字典(2)
             getDicInfoOther() {
-                return this.$api.getMethod(this.$config.efoms_HOST, '/efoms-rest/CheckReport/getSelectValue', { devTypeCode: this.devType }, this.token);
+                return this.$api.getMethod(this.$config.efoms_HOST, '/CheckReport/getSelectValue', { devTypeCode: this.devType }, this.token);
             },
             // 数据字典（3）
             getDicInfoTaf(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, '/ubms-server/TrafficDic/getTrafficDic.htm', { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, '/TrafficDic/getTrafficDic.htm', { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
             },
             gotoList() {
                 window.history.back();
@@ -902,11 +902,11 @@
                 let obj = {};
                 if (isDev) {
                     obj.DevId = this.currentInfo.id;
-                    pageMethods = this.$config.selectAssetDevicePage_GET;
+                    pageMethods = '/deviceDetail/selectAssetDevicePage';
                 } else {
                     obj.facilityId = this.currentInfo.id;
                     obj.facilityTypeCode = this.devTypeCode;
-                    pageMethods = this.$config.selectFacilitySimpleInfoPage_GET;
+                    pageMethods = '/deviceDetail/selectFacilitySimpleInfoPage';
                 }
                 this.$api
                     .getMethod(pageHost, pageMethods, obj, this.token)

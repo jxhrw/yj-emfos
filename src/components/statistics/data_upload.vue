@@ -216,7 +216,7 @@
                 }
             },
             getRegionTree(parentCode) {
-                return this.$api.getMethod(this.$config.efoms_HOST, this.$config.getRegionTree_GET, {
+                return this.$api.getMethod(this.$config.efoms_HOST, '/ubmsService/getRegionTree', {
                     token: this.token,
                     data: JSON.stringify({
                         regionId: parentCode
@@ -291,7 +291,7 @@
             },
             exportExcel() {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.exportCheckRecordInfo_GET;
+                let method = '/export/exportCheckRecordInfo';
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         window.open(res.path);

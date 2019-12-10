@@ -68,7 +68,7 @@
             console.log(this.contentInfo);
 
             this.pageHost = this.$config.efoms_HOST;
-            this.pageMethods = '/efoms-rest/ubmsService/getFilesPage';
+            this.pageMethods = '/ubmsService/getFilesPage';
             this.getLifeInformation();
             // 事件类型
             this.getDicInfo('DBTRANSTYPE').then(res => {
@@ -130,7 +130,7 @@
             },
             // 数据字典
             getDicInfo(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, {
+                return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', {
                     token: this.token,
                     data: JSON.stringify({
                         parentCode: parentCode

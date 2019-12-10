@@ -128,7 +128,7 @@
             },
             searchTable() {
                 this.isTableLoading = true;
-                this.$api.get(`${this.$config.efoms_HOST}/efoms-rest/CheckReport/selectDeviceDetailInfoPage`, this.queryConditions, null).then((res) => {
+                this.$api.get(`${this.$config.efoms_HOST}/CheckReport/selectDeviceDetailInfoPage`, this.queryConditions, null).then((res) => {
                     if (res.appCode == '0') {
                         this.isTableLoading = false;
                         this.tableData = res.resultList.result;
@@ -139,7 +139,7 @@
             },
             exportExcel() {
                 let host = this.$config.efoms_HOST;
-                let method = '/efoms-rest/export/exportCheckReport';
+                let method = '/export/exportCheckReport';
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         window.open(res.path);
@@ -166,7 +166,7 @@
             },
             // 数据字典
             getDicInfo(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, {
+                return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', {
                     token: this.token,
                     data: JSON.stringify({
                         parentCode: parentCode

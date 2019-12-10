@@ -154,7 +154,7 @@ export default {
     let that = this
     this.token = this.$token
     this.pageHost = this.$config.ubms_HOST
-    this.pageMethods = '/ubms-server/OpsPerson/getPageOpsPersonInfo.htm'
+    this.pageMethods = '/OpsPerson/getPageOpsPersonInfo.htm'
     this.getPreSelect()
     this.searchTable()
     Bus.$on('page-tfequ', function(val) {
@@ -254,7 +254,7 @@ export default {
           if (action === 'confirm') {
             instance.confirmButtonLoading = true;
             instance.confirmButtonText = '删除中...';
-            let apiName = this.$config.ubms_HOST + '/ubms-server/OpsPerson/removeOpsPersonInfo.htm?token=' + this.token
+            let apiName = this.$config.ubms_HOST + '/OpsPerson/removeOpsPersonInfo.htm?token=' + this.token
             let data = {
               data: JSON.stringify(this.baseInfo)
             };
@@ -274,7 +274,7 @@ export default {
                     type: 'error',
                     message: '删除失败'
                   });
-                  console.log('/ubms-server/OpsPerson/removeOpsPersonInfo.htm出错');
+                  console.log('/OpsPerson/removeOpsPersonInfo.htm出错');
                 }
               })
               .catch(err => {
@@ -318,7 +318,7 @@ export default {
     },
     getPreSelect() {
       {
-        let apiName = this.$config.ubms_HOST + '/ubms-server/PublicDic/getDicInfo.htm'
+        let apiName = this.$config.ubms_HOST + '/PublicDic/getDicInfo.htm'
         let param = {"parentCode":"OPSPERSONSTATUS"}
         let data = {
           token: this.token,
@@ -330,7 +330,7 @@ export default {
             if (res.appCode === '0') {
               this.personStatuList = res.resultList
             } else {
-              console.log('/ubms-server/PublicDic/getDicInfo.htm出错');
+              console.log('/PublicDic/getDicInfo.htm出错');
             }
           })
           .catch(err => {
@@ -338,7 +338,7 @@ export default {
           });
       }
       {
-        let apiName = this.$config.ubms_HOST + '/ubms-server/PublicDic/getDicInfo.htm'
+        let apiName = this.$config.ubms_HOST + '/PublicDic/getDicInfo.htm'
         let param = {"parentCode":"OPSPERSONTYPE"}
         let data = {
           token: this.token,
@@ -350,7 +350,7 @@ export default {
             if (res.appCode === '0') {
               this.personTypeList = res.resultList
             } else {
-              console.log('/ubms-server/OpsDeptInfo/getOpsDeptInfo.htm出错');
+              console.log('/OpsDeptInfo/getOpsDeptInfo.htm出错');
             }
           })
           .catch(err => {
@@ -358,7 +358,7 @@ export default {
           });
       }
       {
-        let apiName = this.$config.ubms_HOST + '/ubms-server/OpsDeptInfo/getOpsDeptInfo.htm'
+        let apiName = this.$config.ubms_HOST + '/OpsDeptInfo/getOpsDeptInfo.htm'
         let param = {}
         let data = {
           token: this.token,
@@ -370,7 +370,7 @@ export default {
             if (res.appCode === '0') {
               this.topDeptList = res.resultList
             } else {
-              console.log('/ubms-server/OpsDeptInfo/getOpsDeptInfo.htm出错');
+              console.log('/OpsDeptInfo/getOpsDeptInfo.htm出错');
             }
           })
           .catch(err => {

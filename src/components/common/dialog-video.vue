@@ -159,7 +159,7 @@ export default {
         },
         getVideoList() {
             let host = this.$config.efoms_HOST;
-            let method = this.$config.getVideoDeviceRltInfo_GET;
+            let method = '/ubmsService/getVideoDeviceRltInfo';
             let obj = {
                 devTypeCode: this.devTypeCode,
                 devId: this.devId

@@ -461,19 +461,19 @@
             this.getInfoFuc();
 
             // 生产厂家
-            this.getDicInfo(this.$config.getDeviceDic_GET, { 'parentCode': 'DEVICEFACTORY' }).then(res => {
+            this.getDicInfo('/DeviceDic/getDeviceDic.htm', { 'parentCode': 'DEVICEFACTORY' }).then(res => {
                 if (res.appCode == 0) { this.factoryList = res.resultList; }
             });
             // 建设项目
-            this.getDicInfo(this.$config.getDeviceDic_GET, { 'parentCode': 'DEVICEPROJECT' }).then(res => {
+            this.getDicInfo('/DeviceDic/getDeviceDic.htm', { 'parentCode': 'DEVICEPROJECT' }).then(res => {
                 if (res.appCode == 0) { this.buildingProjectsList = res.resultList; }
             });
             // 建设单位
-            this.getDicInfo(this.$config.getDeviceDic_GET, { 'parentCode': 'DEVICECOMPANY' }).then(res => {
+            this.getDicInfo('/DeviceDic/getDeviceDic.htm', { 'parentCode': 'DEVICECOMPANY' }).then(res => {
                 if (res.appCode == 0) { this.projectUnitList = res.resultList; }
             });
             // 运维单位
-            this.getDicInfo('/ubms-server/OpsDeptInfo/getOpsDetpTree.htm', {}).then(res => {
+            this.getDicInfo('/OpsDeptInfo/getOpsDetpTree.htm', {}).then(res => {
                 if (res.appCode == 0) { this.safeguardUnitList = res.resultList; }
             });
 
@@ -483,47 +483,47 @@
                 //     if (res.appCode == 0) { this.devcategoryList = res.resultList; }
                 // });
                 // 所属道路
-                this.getDicInfo(this.$config.getRoadInfo_GET, {}).then(res => {
+                this.getDicInfo('/RoadInfo/getRoadInfo.htm', {}).then(res => {
                     if (res.appCode == 0) { this.roadList = res.resultList; }
                 });
                 // 所属路段
-                this.getDicInfo(this.$config.getBlockName_GET, {}).then(res => {
+                this.getDicInfo('/BlockInfo/getBlockName.htm', {}).then(res => {
                     if (res.appCode == 0) { this.roadSectionList = res.resultList; }
                 });
                 // 所属路口
-                this.getDicInfo(this.$config.getCrossName_GET, {}).then(res => {
+                this.getDicInfo('/CrossInfo/getCrossName.htm', {}).then(res => {
                     if (res.appCode == 0) { this.crossList = res.resultList; }
                 });
                 // 管理部门
-                this.getDicInfo(this.$config.ubms_getDeptTree_GET, {}).then(res => {
+                this.getDicInfo('/DeptInfo/getDeptTree.htm', {}).then(res => {
                     if (res.appCode == 0) { this.managemList = res.resultList; }
                 });
                 // 品牌
-                this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'BRANDCODE' }).then(res => {
+                this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'BRANDCODE' }).then(res => {
                     if (res.appCode == 0) { this.brandList = res.resultList; }
                 });
                 // 通讯方式
-                this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSCONNECT' }).then(res => {
+                this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSCONNECT' }).then(res => {
                     if (res.appCode == 0) { this.comWayList = res.resultList; }
                 });
                 // 通讯协议
-                this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'MODBUSRTU' }).then(res => {
+                this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'MODBUSRTU' }).then(res => {
                     if (res.appCode == 0) { this.comTreatyList = res.resultList; }
                 });
                 // 网络类型
-                this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'NETMODE' }).then(res => {
+                this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'NETMODE' }).then(res => {
                     if (res.appCode == 0) { this.comNetTypeList = res.resultList; }
                 });
                 // 支持方式
-                this.getDicInfo(this.$config.dev_getDicInfo_GET, { 'parentCode': 'SIGNSSTRUCT' }).then(res => {
+                this.getDicInfo('/DeviceDic/getDicInfo.htm', { 'parentCode': 'SIGNSSTRUCT' }).then(res => {
                     if (res.appCode == 0) { this.supportModeList = res.resultList; }
                 });
                 // 朝向
-                this.getDicInfo(this.$config.trf_getDicInfo_GET, { 'parentCode': 'ROADDIRECT' }).then(res => {
+                this.getDicInfo('/TrafficDic/getDicInfo.htm', { 'parentCode': 'ROADDIRECT' }).then(res => {
                     if (res.appCode == 0) { this.orientationList = res.resultList; }
                 });
                 // 责任人
-                this.getDicInfo(this.$config.getPersonInfo_GET, {}).then(res => {
+                this.getDicInfo('/Person/getPersonInfo.htm', {}).then(res => {
                     if (res.appCode == 0) { this.personList = res.resultList; }
                 });
 
@@ -667,26 +667,26 @@
                 if (!this.isMustFill) { return; }
                 switch (this.selectDevcategory) {
                     case "REPDEVTYPE01": // 信号机
-                        method = this.$config.editSignalSiteInfo_POST;
+                        method = '/SignalSiteInfo/editSignalSiteInfo.htm';
                         obj.ssId = this.devId;
                         obj.ssName = this.devName;
                         // obj.deviceStatusCode = status;
                         break;
                     case "REPDEVTYPE02": // 视频监控
-                        method = this.$config.editVideoSiteInfo_POST;
+                        method = '/VideoSiteInfo/editVideoSiteInfo.htm';
                         obj.vdSiteId = this.devId;
                         obj.vdSiteName = this.devName;
                         // obj.deviceStatusCode = status;
                         break;
                     case "REPDEVTYPE08": // 诱导屏
-                        method = this.$config.editLedInfo_POST;
+                        method = '/LedInfoController/editLedInfo.htm';
                         obj.ledId = this.devId;
                         obj.ledName = this.devName;
                         // obj.deviceStatusCode = status;
                         break;
                     case "REPDEVTYPE03": // 卡口
                     case "REPDEVTYPE04": // 电子警察
-                        method = this.$config.editOffsiteInfo_POST;
+                        method = '/OffsiteInfo/editOffsiteInfo.htm';
                         obj.offsiteId = this.devId;
                         obj.offsiteName = this.devName;
                         // obj.osstatusCode = status;
@@ -694,7 +694,7 @@
                     case "REPDEVTYPE05": // 地磁
                     case "REPDEVTYPE06": // 线圈
                     case "REPDEVTYPE07": // 微波
-                        method = this.$config.editTrFlowDevInfo_POST;
+                        method = '/TrFlowInfoController/editTrFlowDevInfo.htm';
                         obj.trfDevId = this.devId;
                         obj.trfDevName = this.devName;
                         // obj.deviceStatusCode = status;
@@ -741,26 +741,26 @@
                 let devTypeCode = Common.getQueryString("devTypeCode");
                 switch (devTypeCode) {
                     case "REPDEVTYPE01": // 信号机
-                        method = this.$config.getSignalSiteInfo_GET;
+                        method = '/SignalSiteInfo/getSignalSiteInfo.htm';
                         obj.ssId = devId;
                         break;
                     case "REPDEVTYPE02": // 视频监控
-                        method = this.$config.getVideoSiteInfo_GET;
+                        method = '/VideoSiteInfo/getVideoSiteInfo.htm';
                         obj.vdSiteId = devId;
                         break;
                     case "REPDEVTYPE08": // 诱导屏
-                        method = this.$config.getLedInfo_GET;
+                        method = '/LedInfoController/getLedInfo.htm';
                         obj.ledId = devId;
                         break;
                     case "REPDEVTYPE03": // 卡口
                     case "REPDEVTYPE04": // 电子警察
-                        method = this.$config.getOffsiteInfo_GET;
+                        method = '/OffsiteInfo/getOffsiteInfo.htm';
                         obj.offsiteId = devId;
                         break;
                     case "REPDEVTYPE05": // 地磁
                     case "REPDEVTYPE06": // 线圈
                     case "REPDEVTYPE07": // 微波
-                        method = this.$config.getTrFlowDevInfo_GET;
+                        method = '/TrFlowInfoController/getTrFlowDevInfo.htm';
                         obj.trfDevId = devId;
                         break;
                     default:
@@ -852,7 +852,7 @@
                             // 管理部门
                             this.selectManagemList = [resObj.manageDept];
                             this.selectManagemCodeList = [resObj.manageDept];
-                            // this.getDicInfo(this.$config.getDeptInfo_GET, {}).then(res => {
+                            // this.getDicInfo('/DeptInfo/getDeptInfo.htm', {}).then(res => {
                             //   if (res.appCode == 0) {
                             //     this.selectManagemList = res.resultList.filter(item => item.deptId == resObj.manageDept);
                             //   }
@@ -1013,14 +1013,14 @@
                 }
             },
             getRegionTree(parentCode) {
-                return this.$api.getMethod(this.$config.efoms_HOST, this.$config.getRegionTree_GET, { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
+                return this.$api.getMethod(this.$config.efoms_HOST, '/ubmsService/getRegionTree', { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
             },
             getDeptTree(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, "/ubms-server/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, "/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
             },
             getDicInfo(method, prarms) {
                 let host = this.$config.ubms_HOST;
-                // let method = this.$config.getRoadInfo_GET;
+                // let method = '/RoadInfo/getRoadInfo.htm';
                 let obj = {
                     token: this.token,
                     data: JSON.stringify(prarms)

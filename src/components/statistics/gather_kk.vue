@@ -207,7 +207,7 @@
                 this.queryConditions.endTime = Common.dateFormat('yyyy-MM-dd', new Date()) + ' 23:59:59';
                 this.queryConditions.wranTypeCode = 'DEVWRANTYPE02';
                 this.isTableLoading = true;
-                this.$api.get(`${this.$config.efoms_HOST}/efoms-rest/CheckReport/getCheckDeviceInfoForReport`, this.queryConditions, null).then((res) => {
+                this.$api.get(`${this.$config.efoms_HOST}/CheckReport/getCheckDeviceInfoForReport`, this.queryConditions, null).then((res) => {
                     this.isTableLoading = false;
                     if (res.appCode == '0' && res.resultList) {
                         this.tableData = res.resultList.result || [];
@@ -228,7 +228,7 @@
             },
             exportExcel() {
                 let host = this.$config.efoms_HOST;
-                let method = '/efoms-rest/export/exportCheckDeviceInfoForReport';
+                let method = '/export/exportCheckDeviceInfoForReport';
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         window.open(res.path);
@@ -264,7 +264,7 @@
             },
             // 数据字典
             getDicInfo(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, {
+                return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', {
                     token: this.token,
                     data: JSON.stringify({
                         parentCode: parentCode

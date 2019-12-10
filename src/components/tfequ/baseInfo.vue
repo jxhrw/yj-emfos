@@ -217,20 +217,20 @@
                 }
             },
             getRegionTree(parentCode) {
-                return this.$api.getMethod(this.$config.efoms_HOST, this.$config.getRegionTree_GET, { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
+                return this.$api.getMethod(this.$config.efoms_HOST, '/ubmsService/getRegionTree', { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
             },
             getDeptTree(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, "/ubms-server/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, "/DeptInfo/getDeptTree.htm", { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
             },
             // 数据字典
             getDicInfo(parentCode) {
-                return this.$api.getMethod(this.$config.ubms_HOST, this.$config.getDeviceDic_GET, { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
+                return this.$api.getMethod(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm', { token: this.token, data: JSON.stringify({ parentCode: parentCode }) });
             },
             // 数据字典 - 基础信息
             devGetDicInfo(parentCode) {
                 return this.$api.getMethod(
                     this.$config.ubms_HOST,
-                    this.$config.dev_getDicInfo_GET, { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
+                    '/DeviceDic/getDicInfo.htm', { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
                 );
             },
             searchTable() {

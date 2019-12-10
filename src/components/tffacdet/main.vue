@@ -269,7 +269,7 @@ export default {
     },
     getAssentFileFuc() {
       let host = this.$config.efoms_HOST;
-      let method = this.$config.getAssentFileInfoList_GET;
+      let method = '/AssentFileInfo/getAssentFileInfoList';
       let obj = {
         devId: this.baseInfo.facilityId,
         devTypeCode: this.baseInfo.facilityTypeCode,
@@ -299,7 +299,7 @@ export default {
       formData.append("file", file);
       Request.uploadFile(formData, res => {
         let host = this.$config.efoms_HOST;
-        let method = this.$config.insertAssentFileInfo_GET;
+        let method = '/AssentFileInfo/insertAssentFileInfo';
         let obj = {
           devId: this.baseInfo.facilityId,
           devTypeCode: this.baseInfo.facilityTypeCode,
@@ -324,7 +324,7 @@ export default {
     },
     delFiles(e) {
       let host = this.$config.efoms_HOST;
-      let method = this.$config.deleteAssentFileInfo_GET;
+      let method = '/AssentFileInfo/deleteAssentFileInfo';
       let obj = {
         fileId: e.fileId
       };
@@ -400,30 +400,30 @@ export default {
       let obj = {};
       switch (this.baseInfo.facilityTypeCode) {
         case "REPDEVTYPE01": // 信号机
-        method = this.$config.editSignalSiteInfo_POST;
+        method = '/SignalSiteInfo/editSignalSiteInfo.htm';
         obj.ssId = this.baseInfo.facilityId;
         obj.deviceStatusCode = status;
         break;
         case "REPDEVTYPE02": // 视频监控
-        method = this.$config.editVideoSiteInfo_POST;
+        method = '/VideoSiteInfo/editVideoSiteInfo.htm';
         obj.vdSiteId = this.baseInfo.facilityId;
         obj.deviceStatusCode = status;
         break;
         case "REPDEVTYPE08": // 诱导屏
-        method = this.$config.editLedInfo_POST;
+        method = '/LedInfoController/editLedInfo.htm';
         obj.ledId = this.baseInfo.facilityId;
         obj.deviceStatusCode = status;
         break;
         case "REPDEVTYPE03": // 卡口
         case "REPDEVTYPE04": // 电子警察
-        method = this.$config.editOffsiteInfo_POST;
+        method = '/OffsiteInfo/editOffsiteInfo.htm';
         obj.offsiteId = this.baseInfo.facilityId;
         obj.osstatusCode = status;
         break;
         case "REPDEVTYPE05": // 地磁
         case "REPDEVTYPE06": // 线圈
         case "REPDEVTYPE07": // 微波
-        method = this.$config.editTrFlowDevInfo_POST;
+        method = '/TrFlowInfoController/editTrFlowDevInfo.htm';
         obj.trfDevId = this.baseInfo.facilityId;
         obj.deviceStatusCode = status;
         break;
@@ -434,7 +434,7 @@ export default {
     // 获取资产画像
     getPortRaitFuc() {
       let host = this.$config.efoms_HOST;
-      let method = this.$config.getPortRait_GET;
+      let method = '/AssetInfo/getPortRait';
       let obj = {
         assentId: this.baseInfo.facilityId,
         typeCode: this.baseInfo.facilityTypeCode
@@ -580,7 +580,7 @@ export default {
           break;
         case 'normal':
           let host = this.$config.efoms_HOST;
-          let method = this.$config.updateDevStatusInfo_PUT;
+          let method = '/devStatus/updateDevStatusInfo';
           console.log(this.baseInfo);
           let obj = {
             devId: this.baseInfo.facilityId,
@@ -594,11 +594,11 @@ export default {
               this.baseInfo.devStatusCode = 'DEVICEALLSTATUS01';
               this.baseInfo.devStatusName = '正常';
             } else {
-              Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+              Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
             }
           })
           .catch(err => {
-            Common.printErrorLog(this.$config.ubms_HOST, this.$config.getDeviceDic_GET);
+            Common.printErrorLog(this.$config.ubms_HOST, '/DeviceDic/getDeviceDic.htm');
             console.log(err);
           });
           break;

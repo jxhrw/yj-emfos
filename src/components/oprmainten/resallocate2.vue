@@ -543,7 +543,7 @@ export default {
     },
     getRegionInfo() {
       return new Promise((resolve, reject) => {
-        let apiName = this.$config.ubms_HOST + '/ubms-server/RegionInfo/getRegionInfo.htm'
+        let apiName = this.$config.ubms_HOST + '/RegionInfo/getRegionInfo.htm'
         let param = {
           parentId: this.$config.cityId
         }
@@ -558,7 +558,7 @@ export default {
               resolve('success')
               this.areaList = res.resultList
             } else {
-              console.log('/ubms-server/RegionInfo/getRegionInfo.htm出错');
+              console.log('/RegionInfo/getRegionInfo.htm出错');
             }
           })
           .catch(err => {
@@ -568,7 +568,7 @@ export default {
     },
     getDeptInfo() {
       return new Promise((resolve, reject) => {
-        let apiName = this.$config.ubms_HOST + '/ubms-server/OpsDeptInfo/getOpsDeptInfo.htm'
+        let apiName = this.$config.ubms_HOST + '/OpsDeptInfo/getOpsDeptInfo.htm'
         let param = {}
         let data = {
           token: this.token,
@@ -583,7 +583,7 @@ export default {
               this.allo = res.resultList[0].opsDeptName
               this.ajaxAllo = res.resultList[0].opsDeptId
             } else {
-              console.log('/ubms-server/OpsDeptInfo/getOpsDeptInfo.htm出错');
+              console.log('/OpsDeptInfo/getOpsDeptInfo.htm出错');
             }
           })
           .catch(err => {
@@ -593,7 +593,7 @@ export default {
     },
     getDeviceStatu() {
       return new Promise((resolve, reject) => {
-        let apiName = this.$config.ubms_HOST + '/ubms-server/DeviceDic/getDicInfo.htm'
+        let apiName = this.$config.ubms_HOST + '/DeviceDic/getDicInfo.htm'
         let param = {
           parentCode: 'DEVICESTATUS'
         }
@@ -608,7 +608,7 @@ export default {
               resolve('success')
               this.useStatusList = res.resultList
             } else {
-              console.log('/ubms-server/DeviceDic/getDicInfo.htm出错');
+              console.log('/DeviceDic/getDicInfo.htm出错');
             }
           })
           .catch(err => {
@@ -617,9 +617,9 @@ export default {
       })
     },
     getSignal() {
-      this.pageMethods = '/ubms-server/SignalSiteInfo/getPageSignalSiteInfo.htm'
-      this.editMethods = '/ubms-server/SignalSiteInfo/editSignalSiteInfo.htm'
-      this.removeMethods = '/ubms-server/SignalSiteInfo/removeSignalSiteInfo.htm'
+      this.pageMethods = '/SignalSiteInfo/getPageSignalSiteInfo.htm'
+      this.editMethods = '/SignalSiteInfo/editSignalSiteInfo.htm'
+      this.removeMethods = '/SignalSiteInfo/removeSignalSiteInfo.htm'
       this.queryConditions1 = {
         pageSize: this.pageSize,
         currentPage: this.currentPage,
@@ -638,9 +638,9 @@ export default {
       }
     },
     getVideoCtrl() {
-      this.pageMethods = '/ubms-server/VideoSiteInfo/getPageVideoSiteInfo.htm'
-      this.editMethods = '/ubms-server/VideoSiteInfo/editVideoSiteInfo.htm'
-      this.removeMethods = '/ubms-server/VideoSiteInfo/removeVideoSiteInfo.htm'
+      this.pageMethods = '/VideoSiteInfo/getPageVideoSiteInfo.htm'
+      this.editMethods = '/VideoSiteInfo/editVideoSiteInfo.htm'
+      this.removeMethods = '/VideoSiteInfo/removeVideoSiteInfo.htm'
       this.queryConditions1 = {
         pageSize: this.pageSize,
         currentPage: this.currentPage,
@@ -659,9 +659,9 @@ export default {
       }
     },
     getOffsite() {
-      this.pageMethods = '/ubms-server/OffsiteInfo/getPageOffsiteInfo.htm'
-      this.editMethods = '/ubms-server/OffsiteInfo/editOffsiteInfo.htm'
-      this.removeMethods = '/ubms-server/OffsiteInfo/removeOffsiteInfo.htm'
+      this.pageMethods = '/OffsiteInfo/getPageOffsiteInfo.htm'
+      this.editMethods = '/OffsiteInfo/editOffsiteInfo.htm'
+      this.removeMethods = '/OffsiteInfo/removeOffsiteInfo.htm'
       this.queryConditions1 = {
         pageSize: this.pageSize,
         currentPage: this.currentPage,
@@ -682,9 +682,9 @@ export default {
       }
     },
     getGeomag() {
-      this.pageMethods = '/ubms-server/TrFlowInfoController/getPageTrFlowDevInfo.htm'
-      this.editMethods = '/ubms-server/TrFlowInfoController/editTrFlowDevInfo.htm'
-      this.removeMethods = '/ubms-server/TrFlowInfoController/removeTrFlowDevInfo.htm'
+      this.pageMethods = '/TrFlowInfoController/getPageTrFlowDevInfo.htm'
+      this.editMethods = '/TrFlowInfoController/editTrFlowDevInfo.htm'
+      this.removeMethods = '/TrFlowInfoController/removeTrFlowDevInfo.htm'
       this.queryConditions1 = {
         pageSize: this.pageSize,
         currentPage: this.currentPage,
@@ -705,9 +705,9 @@ export default {
       }
     },
     getInduction() {
-      this.pageMethods = '/ubms-server/LedInfoController/getPageLedInfo.htm'
-      this.editMethods = '/ubms-server/LedInfoController/editLedInfo.htm'
-      this.removeMethods = '/ubms-server/LedInfoController/removeLedInfo.htm'
+      this.pageMethods = '/LedInfoController/getPageLedInfo.htm'
+      this.editMethods = '/LedInfoController/editLedInfo.htm'
+      this.removeMethods = '/LedInfoController/removeLedInfo.htm'
       this.queryConditions1 = {
         pageSize: this.pageSize,
         currentPage: this.currentPage,
