@@ -1,0 +1,19 @@
+.depiction-info{margin: 14px 14px 25px 14px;background: #FFFFFF;border: 1px solid #E4EAEE;border-radius: 2px;}
+
+.depiction-info .title{height: 36px;border-bottom: 1px solid #EBEFF1;margin: 0 40px 0 40px;}
+.depiction-info .title::before{content: '';position: relative;left: -41px;top: 2px;border-left: 2px solid #00C187;}
+.depiction-info .title h3{font-size: 14px;color: #22262E;line-height: 36px;display: inline-block;}
+.depiction-info .title label{font-size: 12px;color: #6C7883;float: right;line-height: 36px;cursor: pointer;}
+.depiction-info .title label span{display: inline-block;width: 12px;height: 12px;line-height: 12px;border-radius: 50%;border: 1px solid #6C7883;text-align: center;}
+.depiction-info .title .btn-title{width: 50px;height: 20px;border-radius: 1px;line-height: 20px;text-align: center;margin-top: 8px;font-size: 12px;cursor: pointer;}
+.depiction-info .title .btn-title:hover{opacity: 0.5;}
+.depiction-info .title .btn-title:active{opacity: 0.9;}
+.depiction-info .title .btn-execl{margin-left: 20px;background: #f9fafc;border: 1px solid #e1e7ed;color: #4f5a64;float: right;}
+.depiction-info .title .btn-operation{margin-left: 20px;background: #00c1ba;border: 1px solid #00c1ba;color: #ffffff;display: inline-block;}
+
+.depiction-info .column-select{width:30px;height: 20px;background: #F9FAFC;border: 1px solid #E1E7ED;border-radius: 1px;line-height: 20px;text-align: center;margin-top: 8px;float: right;cursor: pointer;background: url('../../assets/images/icon-select.png') no-repeat center/18px;margin-left: 15px;}
+.depiction-info .content{padding-top: 10px;padding-left: 40px;padding-right: 40px;padding-bottom: 30px;}
+.depiction-info .content label{color: #4F5A64;display: inline-block;width: 48px;font-size: 12px; margin-right: 12px;text-align: right;}
+.depiction-info .content span{font-size: 12px;color: #737E84;}
+.depiction-info >>> .el-dialog__title{font-size: 14px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width: 300px;display: block;}
+.depiction-info >>> .dialog__headerbtn{top: 24px;}

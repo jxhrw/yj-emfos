@@ -1,0 +1,51 @@
+.ej-header {
+    background: linear-gradient(to right, #0365bb, #0250ac) !important;
+}
+
+.scrollview {
+    background-color: #f5f5f7 !important;
+    border-right: 1px solid #bdc9d4;
+}
+
+.el-menu-vertical-demo {
+    background-color: #f5f5f7 !important;
+}
+
+.el-menu-vertical-demo .el-submenu__title {
+    background-color: #f5f5f7 !important;
+}
+
+.el-menu-vertical-demo .el-submenu.is-active .el-submenu__title,
+.el-menu-vertical-demo .el-submenu.is-opened .el-submenu__title {
+    background-color: #e4ebf1 !important;
+}
+
+.el-menu-vertical-demo.el-menu--collapse .el-submenu.is-active .el-submenu__title {
+    background-color: #025eb8 !important;
+}
+
+.el-menu-vertical-demo .el-submenu.is-active .el-menu-vertical-demo,
+.el-menu-vertical-demo .el-submenu.is-opened .el-menu-vertical-demo {
+    background-color: #e4ebf1 !important;
+}
+
+.el-menu-vertical-demo .el-menu-item.is-active,
+.el-menu-vertical-demo .no-child:hover,
+.el-menu-vertical-demo .el-submenu .el-submenu__title:hover,
+.el-menu-vertical-demo .el-submenu.is-active .el-submenu__title:hover,
+.el-menu-vertical-demo .el-submenu.is-opened .el-submenu__title:hover,
+.el-menu-vertical-demo .el-submenu .el-menu-vertical-demo:hover,
+.el-menu-vertical-demo .el-submenu .el-menu-vertical-demo.is-active,
+.el-menu--vertical .el-menu--popup .el-menu-item:hover,
+.el-menu--vertical .el-menu--popup .el-menu-item.is-active {
+    background-color: #025eb8 !important;
+    color: #fff !important;
+}
+
+.menu-collapse {
+    background-color: #e5ebf2 !important;
+}
+
+.el-menu--vertical .el-menu--popup {
+    background: #f5f5f7 !important;
+}

@@ -1,0 +1,85 @@
+.title{height: 36px;margin: 0 0 0 40px;}
+.title::before{content: "";position: relative;left: -41px;top: 2px;border-left: 2px solid #00c187;}
+.title h3{font-size: 14px;color: #22262e;line-height: 36px;display: inline-block;}
+.content-base{height: 218px;background: #FFFFFF;border: 1px solid #E4EAEE;border-radius: 2px;margin: 14px 14px 0 14px;}
+.content-base.content-left{margin-right: 7px;}
+.content-base.content-right{margin-left: 7px;}
+
+/* 资产信息 */
+.content-left .icon-base-box{float: right;}
+.content-left .icon-base{display: inline-block;width: 16px;height: 16px;background: no-repeat center/contain;margin: 10px 18px 0 0;cursor: pointer;}
+.content-left .icon-video{background-image: url('../../assets/images/icon-re-video.png');}
+.content-left .icon-file{background-image: url('../../assets/images/icon-file.png');}
+.content-left .icon-map{background-image: url('../../assets/images/icon-location.png');}
+.content-left .icon-more{background-image: url('../../assets/images/icon-more.png');}
+.content-left .base-info{margin-top: 4px;margin-left: 40px;}
+.content-left .base-info li{margin-bottom: 16px;font-size: 12px;display: flex;line-height: 12px;height: 12px;}
+.content-left .base-info li span:first-child{color: #4F5A64;text-align: right;width: 48px;}
+.content-left .base-info li span:last-child{color: #737E84;flex: 1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left: 22px;}
+.content-left .base-info .icon-status{height: 16px;background: no-repeat 0/16px;line-height: 16px;display: inline-block;padding-left: 20px;}
+.content-left .base-info .icon-abnormal{background-image: url('../../assets/images/icon-error-opacity.png');}
+.content-left .base-info .icon-normal{background-image: url('../../assets/images/icon-normal-opacity.png');}
+
+/* 资产画像 */
+.content-right .base-portrait{margin-left: 40px;margin-top: 4px;height: 182px;position: relative;background: no-repeat center;}
+.content-right .base-type-REPDEVTYPE01{background-image: url('../../assets/images/icon-eq-xh.png');}
+.content-right .base-type-REPDEVTYPE02{background-image: url('../../assets/images/icon-eq-vd.png');}
+.content-right .base-type-REPDEVTYPE03{background-image: url('../../assets/images/icon-eq-kk.png');}
+.content-right .base-type-REPDEVTYPE04{background-image: url('../../assets/images/icon-eq-dj.png');}
+.content-right .base-type-REPDEVTYPE05{background-image: url('../../assets/images/icon-eq-dc.png');}
+.content-right .base-type-REPDEVTYPE06{background-image: url('../../assets/images/icon-eq-xq.png');}
+.content-right .base-type-REPDEVTYPE07{background-image: url('../../assets/images/icon-eq-wb.png');}
+.content-right .base-type-REPDEVTYPE08{background-image: url('../../assets/images/icon-eq-yd.png');}
+.content-right .base-type-REPDEVTYPE21{background-image: url('../../assets/images/icon-fa-bx.png');}
+.content-right .base-type-REPDEVTYPE23{background-image: url('../../assets/images/icon-fa-bz.png');}
+.content-right .base-type-REPDEVTYPE22{background-image: url('../../assets/images/icon-fa-hl.png');}
+.content-right label{font-size: 12px;letter-spacing: 0.4px;text-align: center;border: 1px solid;border-radius: 11px;line-height: 22px;padding: 0 15px;position: absolute;left: 50%;transform: translateX(-50%);white-space: nowrap;}
+.content-right .position1{top: 0;left: 30%;}
+.content-right .position2{top: 16px;left: 60%;}
+.content-right .position3{top: 42px;left: 82%;}
+.content-right .position4{top: 65px;left: 20%;}
+.content-right .position5{top: 85px;left: 80%;}
+.content-right .position6{top: 99px;left: 36%;}
+.content-right .position7{top: 127px;left: 72%;}
+.content-right .level1{color: #60A2EA;background: #E6F0FB;border-color: #B0D3FA;}
+.content-right .level2{color: #D59006;background: #FAF3E6;border-color: #F8D795;}
+.content-right .level3{color: #E66161;background: #FDE5E5;border-color: #FFC5C5;}
+
+/* 生命周期 */
+.content-bottom{background: #FFFFFF;border: 1px solid #E4EAEE;border-radius: 2px;margin: 14px;}
+.content-bottom .base-life-tabs{float: right;margin-right: 40px;}
+.content-bottom .base-life-tabs .life-tab{width: 98px;line-height: 34px;border-bottom: 2px solid #FFFFFF;display: inline-block;text-align: center;font-size: 12px;color: #5F6E92;letter-spacing: 0.4px;cursor: pointer;}
+.content-bottom .base-life-tabs .active{border-color: #4285FD;}
+.content-bottom .content-life{margin: 0 40px;padding: 10px 0 20px;}
+
+/* 生命周期里的通用样式 */
+.base-info .content .content-row-select{margin: 0;}
+.base-info .content .content-select{width: 220px;margin-right: 20px;}
+.base-info .content .content-date{width: 220px;margin-right: 20px;}
+.life-search{background: #00C187;border-radius: 2px;width: 44px;height: 20px;text-align: center;line-height: 20px;color: #ffffff;font-size: 12px;cursor: pointer;display: inline-block;}
+.life-table{margin-top: 11px;}
+.content >>> .el-table .cell,
+.content >>> .el-table th div,
+.content >>> .el-table--border td:first-child .cell,
+.content >>> .el-table--border th:first-child .cell{padding-left: 40px;}
+.content >>> .el-table .cell,
+.content >>> .el-table th div{padding-right: 40px;}
+.content >>> table thead tr th,
+.content >>> table tbody tr>td{text-align: left;}
+    /* 生命周期里的图型 */
+.base-info .content .content-graph{margin: 10px 0;}
+.content-graph .box-pie{position: relative;min-height: 120px;}
+.content-graph .box-pie h6{font-size: 12px;color: #4F5A64;letter-spacing: 0.4px;font-weight: normal;}
+.content-graph .box-pie .box-echart-pie{width: 130px;height: 130px;position: absolute;top: -5px;left: 100px;}
+.content-graph .box-pie .box-echart-pie label{position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);font-size: 18px;color: #4F5A64;letter-spacing: 0.6px;}
+.content-graph .box-pie .box-echart-pie .pieEchart{width: 130px;height: 130px;}
+
+.content-graph .box-line .box-echart-line{height: 112px;margin: 0 40px;position: relative;}
+.content-graph .box-line .box-echart-line label{position: absolute;font-size: 12px;color: #3D434F;top: -8px;left: 14px;}
+.content-graph .box-line .box-echart-line .lineEchart{width: 100%;height: 112px;}
+.content-graph .box-line .box-echart-line .box-echart-level{position: absolute;z-index: 2;top: -31px;right: 0;margin: 10px;}
+
+.content-graph .box-statistics{position: relative;min-height: 10px;}
+.content-graph .box-statistics-float{width: 100px;height: 112px;background: #4D8BF9;box-shadow: 0 2px 6px -2px rgba(54,54,59,0.45);border-radius: 2px;font-size: 12px;color: #FFFFFF;display: flex;align-items: center;position: absolute;top: 0;right: 0;}
+.content-graph .box-statistics .box-statistics-float div{padding: 0 10px;}
+.content-graph .box-statistics .num{font-size: 22px;letter-spacing: 0.73px;margin-bottom: 5px;}

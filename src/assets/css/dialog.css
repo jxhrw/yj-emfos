@@ -1,0 +1,15 @@
+.dialog-urge .dialog-main{margin-top: -30px;padding: 10px 0 20px 0;border-top: 1px solid #EBEFF1;}
+.dialog-urge .dialog-main .dialog-label{float: left;font-size: 12px;margin-right: 8px;width: 48px;text-align: right;line-height: 28px;position: relative;}
+.dialog-urge .dialog-main .revoke-reason{margin-bottom: 13px;}
+.dialog-urge .dialog-main .dialog-content{background: #F9FAFC;border: 1px solid #E1E7ED;}
+.dialog-urge .dialog-footer{text-align: center;}
+.dialog-urge .dialog-footer .submit{margin-right: 20px;background: #00C187;border-color: #E1E7ED;}
+.dialog-urge .dialog-footer .submit:hover{background: #00C187;border-color: #E1E7ED;}
+.dialog-urge .dialog-footer .cancel{background: #F9FAFC;border-color: #E1E7ED;color: #6C7883;}
+.dialog-urge .dialog-footer .cancel:hover{background: #F9FAFC;border-color: #E1E7ED;color: #6C7883;}
+
+
+.dialog-urge .dialog-main >>> .el-input__inner{border-radius: 0;background: #F9FAFC;border: 1px solid #E1E7ED;}
+.dialog-urge .dialog-main >>> .el-input__suffix{border-left: 1px solid #E1E7ED;}
+.dialog-urge >>> .el-dialog__header span{font-size: 14px;color: #22262E;line-height: 19px;}
+.dialog-urge >>> .el-dialog__headerbtn{top: 24px;}

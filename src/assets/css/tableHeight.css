@@ -1,0 +1,13 @@
+.el-table td,
+.el-table th {
+    padding: 6px 0;
+}
+
+.content-table .el-loading-mask {
+    /* margin-top: 36px; */
+}
+
+.content-table .el-icon-loading,
+.content-table .el-loading-text {
+    color: #00C187;
+}

@@ -1,0 +1,35 @@
+.content-table{width: 100%}
+.content-table .tab-operation{color: #00C187;cursor: pointer;}
+.content-table .tab-operation.boc-inline{display: inline-block;}
+.content-table .tab-operation.color-yellow{color: #ff9b00;}
+.content-table .tab-operation.color-grey{color: #f77155;}
+.content-table .tab-hover{color: #4F5A64;}
+.content-table .device-status{height: 16px;background: no-repeat center left/16px;line-height: 16px;display: inline-block;padding-left: 20px;}
+.content-table .icon-normal{background-image: url("../../assets/images/icon-normal.png");}
+.content-table .icon-abnormal{background-image: url("../../assets/images/icon-error.png");}
+.content-table .current-row .icon-normal{background-image: url("../../assets/images/icon-normal-white.png");background-size: 18px;}
+.content-table .class-status{background: no-repeat center left/16px;padding-left: 25px;text-align: left;}
+.content-table .class-status.DEVWRANLEVEL01{background-image: url("../../assets/images/icon-abn-danger.png");}
+.content-table .class-status.DEVWRANLEVEL02{background-image: url("../../assets/images/icon-abn-warning.png");}
+.content-table .class-status.DEVWRANLEVEL03{background-image: url("../../assets/images/icon-play-green.png");background-size: 14px;background-position-x: 2px;}
+.content-table .current-row .class-status.DEVWRANLEVEL03{background-image: url("../../assets/images/icon-play-white.png");}
+.content-table >>> table thead tr th{background: #F9FAFC;text-align: center;}
+.content-table >>> table thead th>.cell{color: #737E84;font-size: 12px;}
+.content-table >>> table tbody tr>td{font-size: 12px;color: #4F5A64;text-align: center;}
+.content-table >>> table tbody tr:hover>td,
+.content-table >>> table tbody tr.hovre-row:hover>td,
+.content-table >>> .el-table__body tr.hover-row>td,
+/* .content-table >>> .el-table__body tr.hover-row.el-table__row--striped>td .tab-operation,
+.content-table >>> .el-table__body tr.hover-row>td .tab-operation */
+.content-table >>> .el-table__body tr.hover-row.el-table__row--striped>td{background: rgba(0, 243, 170, 0.1);}
+
+
+.content-table >>> .el-table__body tr.current-row>td,
+.content-table >>> .el-table__body tr.current-row.hover-row>td, 
+.content-table >>> .el-table__body tr.current-row.hover-row.el-table__row--striped>td, 
+.content-table >>> .el-table--striped .el-table__body tr.el-table__row--striped.current-row td{background: #00C187;color: #FFFFFF;}
+
+.content-table >>> .el-table__body tr.current-row>td .tab-operation, 
+.content-table >>> .el-table__body tr.current-row.hover-row>td .tab-operation, 
+.content-table >>> .el-table__body tr.current-row.hover-row.el-table__row--striped>td .tab-operation, 
+.content-table >>> .el-table--striped .el-table__body tr.el-table__row--striped.current-row td .tab-operation{color: #FFFFFF};
