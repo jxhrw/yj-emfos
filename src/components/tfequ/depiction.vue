@@ -33,7 +33,7 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="建设日期" prop="devBuildDate" show-overflow-tooltip></el-table-column>
-                <el-table-column label="维护单位" prop="devDeptName" show-overflow-tooltip></el-table-column>
+                <el-table-column label="维护单位" prop="oppmDeptName" show-overflow-tooltip></el-table-column>
                 <el-table-column label="IP地址" prop="devIp" show-overflow-tooltip></el-table-column>
                 <el-table-column label="设备状态" prop="devStatusName" show-overflow-tooltip></el-table-column>
                 <el-table-column label="维修状态" prop="repStatusName" show-overflow-tooltip v-if="JSON.stringify(multipleSelection).indexOf('维修状态')>-1"></el-table-column>

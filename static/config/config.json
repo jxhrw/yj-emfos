@@ -1,7 +1,7 @@
 {
     "ProjectName": ".",
-    "efoms_HOST": "http://192.168.91.158:10005",
-    "ubms_HOST": "http://192.168.91.121:8080",
+    "efoms_HOST": "http://192.168.106.121:10005",
+    "ubms_HOST": "http://192.168.106.130:8080",
     "jtss_HOST": "http://192.168.106.130:8180",
     "eqImg_HOST": "http://192.168.106.112/",
     "idcs_HOST": "http://192.168.106.129:8080/idcs-web",
@@ -14,6 +14,7 @@
     "mapConfig": "cmps_view",
     "mapConfigAssets": "efoms",
     "baseimgs": "http://192.168.106.129:8080/idcs-web/common/picView.jsp",
+    "baseimgs_file": "http://192.168.106.130:12345/pic-proxy/pic/picShow.htm",
     "mapImages_HOST": "http://192.168.104.102:8080/js/",
     "mapSceneUrl": "http://192.168.103.120:8034/truevision/index.html",
     "webservice_url": "http://192.168.106.138:8080/ejvideo",

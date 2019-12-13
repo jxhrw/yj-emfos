@@ -136,7 +136,8 @@ exports.htmlPlugin = function() {
             filename: filename + '.html',
             // 页面模板需要加对应的js脚本，如果不加这行则每个页面都会引入所有的js脚本
             chunks: ['manifest', 'vendor', filename],
-            inject: true
+            inject: true,
+            favicon: path.resolve('src/assets/images/favicon.ico')
         };
         if (process.env.NODE_ENV === 'production') {
             conf = merge(conf, {
@@ -148,32 +149,32 @@ exports.htmlPlugin = function() {
                 chunksSortMode: 'dependency'
             });
         }
-        arr.push(new HtmlWebpackPlugin(conf));
+        // arr.push(new HtmlWebpackPlugin(conf));
 
         // 针对测试环境入口多，热更新太慢
         console.log(conf.template);
         switch (conf.template) {
-            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/index/index.html':
-                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfequ/tfequ.html':
-                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfdet/tfdet.html':
-                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfedit/tfedit.html':
+            // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/index/index.html':
+            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfequ/tfequ.html':
+            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfdet/tfdet.html':
+            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfedit/tfedit.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tffac/tffac.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tffacdet/tffacdet.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tffacedit/tffacedit.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/journal/journal.html':
 
-            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/create/create.html':
+                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/create/create.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/eqpm/eqpm.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/fixm/fixm.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/opex/opex.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/repdesc/repdesc.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/repm/repm.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/insdc/insdc.html':
-            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/inspection/inspection.html':
-            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/xassets/assets.html':
+                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/inspection/inspection.html':
+                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/xassets/assets.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/insvdmd/insvdmd.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/statistics/statistics.html':
-                // arr.push(new HtmlWebpackPlugin(conf));
+                arr.push(new HtmlWebpackPlugin(conf));
                 break;
             default:
                 break;

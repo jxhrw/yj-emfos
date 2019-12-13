@@ -21,4 +21,8 @@
         flex-flow: column;
         height: 100%;
     }
+
+    .base-info .content label.el-radio {
+        width: 80px !important;
+    }
 </style>

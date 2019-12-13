@@ -226,6 +226,22 @@
         background-image: url('../../assets/images/icon-menu-5.png');
     }
 
+    .icon-menu-tools.menu-declare {
+        background-image: url('../../assets/images/icon-menu-6.png');
+    }
+
+    .icon-menu-tools.menu-examine {
+        background-image: url('../../assets/images/icon-menu-7.png');
+    }
+
+    .icon-menu-tools.menu-set {
+        background-image: url('../../assets/images/icon-menu-2.png');
+    }
+
+    .icon-menu-tools.menu-work {
+        background-image: url('../../assets/images/icon-menu-8.png');
+    }
+
     .el-submenu .el-menu-item {
         height: 36px !important;
         line-height: 36px !important;

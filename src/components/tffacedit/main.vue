@@ -65,7 +65,7 @@
                                     <el-col :span="12">
                                         <label><span><i>*</i>维护单位</span></label>
                                         <el-select v-model="selectSafeguardUnit" placeholder="" size='mini' class="content-select" :disabled="isReadonly">
-                                            <el-option v-for="item in safeguardUnitList" :key="item.deptId" :label="item.deptName" :value="item.deptId">
+                                            <el-option v-for="item in safeguardUnitList" :key="item.opsDeptId" :label="item.opsDeptName" :value="item.opsDeptId">
                                             </el-option>
                                         </el-select>
                                     </el-col>
@@ -339,6 +339,37 @@
                                 </el-row>
                             </div>
                         </div>
+                        <div class="base-attribute">
+                            <div class="title" @click="showInfoVisible('filesVisible')">
+                                <h3>附件信息</h3>
+                                <div class="content-icon" :class="{'active':filesVisible}"></div>
+                            </div>
+                            <div class="content" v-show="filesVisible">
+                                <el-row class="content-row-select">
+                                    <el-col :span="23" class="file-info">
+                                        <label><span>图文附件</span></label>
+                                        <span class="file-name">
+                                            <div v-for="(item,index) in filesShowList" :key="index" class="file-single">
+                                                <el-image v-if="/\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/.test(urlToName(item))" :src="item" :preview-src-list="[item]" fit="fill"></el-image>
+                                                <a v-else-if="/\.(doc|docx|DOC|DOCX)$/.test(urlToName(item))" :title="urlToName(item)" class="icon-file file-doc" :href="item"></a>
+                                                <a v-else-if="/\.(xls|xlsx|XLS|XLSX)$/.test(urlToName(item))" :title="urlToName(item)" class="icon-file file-xls" :href="item"></a>
+                                                <a v-else :title="urlToName(item)" class="icon-file file-other" :href="item"></a>
+
+                                                <span v-if="!isReadonly" class="ms-actions">
+                                                    <span class="ms-delete" @click="handleDownload(item)">下载</span>
+                                                    <span class="ms-delete" @click="handleRemove(item,index)">删除</span>
+                                                </span>
+                                            </div>
+                                            <div v-if="!isReadonly" class="file-single">
+                                                <el-upload class="icon-file" style="display:block;" :action="`${$config.ubms_HOST}/ubms-server/file/local/upload/annex`" list-type="picture-card" :headers="{token:token}" :on-success="handleSuccessList" :show-file-list="false">
+                                                    <i slot="default" class="el-icon-plus"></i>
+                                                </el-upload>
+                                            </div>
+                                        </span>
+                                    </el-col>
+                                </el-row>
+                            </div>
+                        </div>
                         <template>
                             <!-- 交通标线 -->
                             <div class="base-attribute" v-if="pageTypeCode == 'REPDEVTYPE21'">
@@ -537,6 +568,16 @@
         components: {
             "EJ-Menu": Menu
         },
+        filters: {
+            urlToName(val) {
+                var str = '';
+                if (val.indexOf('/') > -1) {
+                    let arr = val.split('/');
+                    str = arr[arr.length - 1];
+                }
+                return str;
+            }
+        },
         data() {
             return {
                 title: "资产信息",
@@ -606,6 +647,8 @@
                 supportModeList: [],
                 selectOrientation: '',
                 orientationList: [],
+                filesList: [], // 原始路径
+                filesShowList: [], // 代理后的图片路径用于展示
                 // 专属信息
                 selectPower: '',
                 powerList: [],
@@ -643,6 +686,7 @@
                 longInfoVisible: true,
                 comInfoVisible: true,
                 supInfoVisible: true,
+                filesVisible: true,
                 bzInfoVisible: true,
                 bxInfoVisible: true,
                 hlInfoVisible: true,
@@ -704,10 +748,6 @@
             this.getDicInfo(this.$config.getDeviceDic_GET, { 'parentCode': 'DEVICECOMPANY' }).then(res => {
                 if (res.appCode == 0) { this.projectUnitList = res.resultList; }
             });
-            // 运维单位
-            this.getDicInfo('/ubms-server/OpsDeptInfo/getOpsDetpTree.htm', {}).then(res => {
-                if (res.appCode == 0) { this.safeguardUnitList = res.resultList; }
-            });
 
             if (!this.isReadonly && true) {
                 // 设施类型
@@ -715,8 +755,11 @@
                     if (res.appCode == 0) { this.devcategoryList = res.resultList; }
                 });
                 // 维护单位
-                this.getDicInfo(this.$config.getDeptInfo_GET, {}).then(res => {
-                    if (res.appCode == 0) { this.safeguardUnitList = res.resultList; }
+                // this.getDicInfo(this.$config.getDeptInfo_GET, {}).then(res => {
+                //     if (res.appCode == 0) { this.safeguardUnitList = res.resultList; }
+                // });
+                this.getDicInfo(`/ubms-server/OpsDeptInfo/getOpsDeptTreeRoot.htm`, { deptTypeCode: 'OPSDEPTTYPE01,OPSDEPTTYPE03' }).then(res => {
+                    this.safeguardUnitList = res.resultList || [];
                 });
                 // 所属道路
                 this.getDicInfo(this.$config.getRoadInfo_GET, {}).then(res => {
@@ -857,6 +900,17 @@
                             break;
                     }
                 }
+            },
+            filesList(val) {
+                let arr = [];
+                this.filesList.map(res => {
+                    if (this.$config.baseimgs_file) {
+                        arr.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${res}`);
+                    } else {
+                        arr.push(res);
+                    }
+                });
+                this.filesShowList = arr;
             }
         },
         methods: {
@@ -970,12 +1024,13 @@
                 // this.postData.netMode = this.selectComNetType;// 网络类型
                 this.postData.supportModeCode = this.selectSupportMode; // 支持方式
                 this.postData.orientCode = this.selectOrientation; // 朝向
+                this.postData.filePath = this.filesList.join(','); //附件
             },
             // 获取修改状态的接口,和部分差异数据
             getModifyInterface() {
                 let method = "";
                 let obj = {};
-                if (!this.isMustFill()) { return; }
+                // if (!this.isMustFill()) { return false; }
                 switch (this.pageTypeCode) {
                     case "REPDEVTYPE21": // 交通标线
                         method = this.isAdd ? this.$config.addMarkingInfo_POST : this.$config.editMarkingInfo_POST;
@@ -1019,6 +1074,7 @@
             saveBaseInfo() {
                 let method = this.getModifyInterface().method;
                 this.postData = this.getModifyInterface().object;
+                if (!method) { return; }
                 this.getPostData();
                 this.changeDevFuc(method, this.postData, (res) => {
                     window.history.back();
@@ -1081,6 +1137,7 @@
                         if (res.appCode == 0) {
                             let resObj = res.resultList[0];
                             this.baseInfo = resObj;
+                            this.getFilesInfo();
                             switch (this.pageTypeCode) {
                                 case "REPDEVTYPE21": // 交通标线
                                     this.facilityId = resObj.markingId; // 设施编号
@@ -1206,6 +1263,9 @@
                         console.log(err);
                     });
             },
+            getFilesInfo() {
+                this.filesList = (this.baseInfo.filePath || '').split(',');
+            },
             // 地图定位相关--start
             // 保存经纬度修改
             saveLongAndLat() {
@@ -1324,6 +1384,35 @@
                     }
                     // this.selectManagemVisible = false;
                 }
+            },
+            handleSuccessList(response, file, fileList) {
+                console.log(response);
+                if (response.indexOf('/script>') > -1) {
+                    let txt = response.split('/script>')[1];
+                    let obj = JSON.parse(txt);
+                    let url = (obj.resultList || '').replace(/[\;]/g, "");
+                    if (url.indexOf('/upload') > -1) {
+                        url = url.split('/upload')[0] + '/ubms-server/upload' + url.split('/upload')[1];
+                    }
+                    this.filesList.push(url);
+                }
+            },
+            handleRemove(e, index) {
+                this.filesList.splice(index, 1);
+            },
+            handleDownload(e) {
+                var link = document.createElement('a');
+                link.setAttribute("download", "");
+                link.href = e;
+                link.click();
+            },
+            urlToName(val) {
+                var str = '';
+                if (val.indexOf('/') > -1) {
+                    let arr = val.split('/');
+                    str = arr[arr.length - 1];
+                }
+                return str;
             },
             getRegionTree(parentCode) {
                 return this.$api.getMethod(this.$config.efoms_HOST, this.$config.getRegionTree_GET, { token: this.token, data: JSON.stringify({ regionId: parentCode }) });
@@ -1476,6 +1565,92 @@
     }
 </style>
 
+<style lang="less" scoped>
+    .file-info {
+        display: flex;
+        align-items: center;
+
+        .file-name {
+            flex: 1;
+            display: flex;
+            align-items: center;
+
+            .file-single {
+                position: relative;
+                margin-right: 10px;
+
+                /deep/ .el-image {
+                    width: 60px;
+                    height: 60px;
+                    display: block;
+                }
+
+                /deep/ .el-upload {
+                    width: 60px;
+                    height: 60px;
+                    line-height: 64px;
+                    border-style: solid;
+                    background-color: #fff;
+                    border-radius: 0;
+                    border-color: #c0ccda;
+
+                    .el-icon-plus {
+                        font-size: 20px;
+                    }
+                }
+
+                &:hover {
+                    .ms-actions {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+
+                .ms-actions {
+                    position: absolute;
+                    width: 100%;
+                    height: 16px;
+                    bottom: 0;
+                    box-sizing: border-box;
+                    padding: 0 6px;
+                    background: rgba(0, 0, 0, 0.3);
+                    display: none;
+
+                    .ms-delete {
+                        color: #fff;
+                        font-size: 12px;
+                        line-height: 16px;
+                        transform: scale(0.9);
+                        white-space: nowrap;
+                        cursor: pointer;
+                    }
+                }
+
+                .icon-file {
+                    display: block;
+                    width: 60px;
+                    height: 60px;
+
+                    &.file-doc {
+                        background: url('../../assets/images/file-word.png') no-repeat center/120%;
+                    }
+
+                    &.file-xls {
+                        background: url('../../assets/images/file-execl.png') no-repeat center/120%;
+                    }
+
+                    &.file-other {
+                        background: url('../../assets/images/file-file.png') no-repeat center/120%;
+                    }
+                }
+            }
+        }
+
+        /deep/ .el-image-viewer__close {
+            color: #fff;
+        }
+    }
+</style>
 <style>
     .navigationbar {
         top: 10px;

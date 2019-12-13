@@ -56,12 +56,16 @@
                     </el-col>
                     <el-col :span="7">
                         <label>维护单位</label>
-                        <el-input v-model="selectDeptId" placeholder="请选择" size='mini' class="content-select" clearable readonly v-popover:popoverSelectDeptId></el-input>
+                        <!-- <el-input v-model="selectDeptId" placeholder="请选择" size='mini' class="content-select" clearable readonly v-popover:popoverSelectDeptId></el-input>
                         <el-popover highlight-current popper-class="region-popper" ref="popoverSelectDeptId" placement="bottom-start" trigger="click" v-model="selectDeptIdVisible">
                             <el-scrollbar class="region-scroll">
                                 <el-tree id="selectDeptId" :data="devDeptIdList" accordion :props="defaultProps" :expand-on-click-node="false" @node-click="handleNodeDevIpClick"></el-tree>
                             </el-scrollbar>
-                        </el-popover>
+                        </el-popover> -->
+                        <el-select v-model="selectDeptIdCode" placeholder="请选择" size='mini' class="content-select" clearable>
+                            <el-option v-for="item in devDeptIdList" :key="item.opsDeptId" :label="item.opsDeptName" :value="item.opsDeptId">
+                            </el-option>
+                        </el-select>
                     </el-col>
                 </el-row>
                 <el-row v-show="conditionVisible" class="content-row-select">
@@ -162,8 +166,11 @@
                 if (res.appCode == 0) { this.regionList = res.resultList; }
             });
             // 维护单位
-            this.getDeptTree(null).then(res => {
-                if (res.appCode == 0) { this.devDeptIdList = res.resultList; }
+            // this.getDeptTree(null).then(res => {
+            //     if (res.appCode == 0) { this.devDeptIdList = res.resultList; }
+            // });
+            this.getDicCommon(`${this.$config.ubms_HOST}/ubms-server/OpsDeptInfo/getOpsDeptTreeRoot.htm`, { deptTypeCode: 'OPSDEPTTYPE01,OPSDEPTTYPE03' }).then(res => {
+                this.devDeptIdList = res.resultList || [];
             });
             // 设备状态
             this.getDicInfo('DEVICEALLSTATUS').then(res => {
@@ -231,6 +238,12 @@
                 return this.$api.getMethod(
                     this.$config.ubms_HOST,
                     this.$config.dev_getDicInfo_GET, { token: this.token, data: JSON.stringify({ parentCode: parentCode }) }
+                );
+            },
+            // 通用字典类型接口
+            getDicCommon(url, obj) {
+                return this.$api.get(
+                    url, { token: this.token, data: JSON.stringify(obj) }, {}
                 );
             },
             searchTable() {

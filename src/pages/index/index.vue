@@ -1,6 +1,6 @@
 <template>
     <div class="ej-mian">
-        <EJ-Header :userName="userInfo.personName"></EJ-Header>
+        <EJ-Header :userName="userInfo.personName" :title="title"></EJ-Header>
         <EJ-Main :menusDate="userInfo.rightListsEx"></EJ-Main>
 
         <div style="width:0;overflow:hidden;">
@@ -21,6 +21,7 @@
         },
         data() {
             return {
+                title: '',
                 userInfo: {},
                 audio: Audio,
                 DOMS: {}, // 弹出的实例集合
@@ -45,6 +46,12 @@
                         sessionStorage.setItem("userInfo", JSON.stringify(res.resultList));
                         this.userInfo = res.resultList || {};
                     }
+
+                    this.title = this.userInfo.systemName || '资产运维管理平台';
+                    document.title = this.title;
+                }).catch(err => {
+                    this.title = this.userInfo.systemName || '资产运维管理平台';
+                    document.title = this.title;
                 });
             },
 

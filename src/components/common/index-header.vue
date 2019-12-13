@@ -31,10 +31,10 @@
                 return Common.dateFormat('yyyy-MM-dd hh:mm:ss', new Date(parseInt(value)));
             }
         },
-        props: ['userName'],
+        props: ['userName', 'title'],
         data() {
             return {
-                title: '设备设施运维平台',
+                // title: '设备设施运维平台',
                 visualizationUrl: '',
                 errorImg: require('../../assets/images/icon-user-header.png'),
                 userHearder: '',
