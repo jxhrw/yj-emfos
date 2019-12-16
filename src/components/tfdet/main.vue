@@ -135,7 +135,7 @@
                         <div class="revoke-reason" style="margin:0;">
                             <el-scrollbar class="ej-load-scrollbar">
                                 <ul class="file-download">
-                                    <li v-for="(item,index) in fileList" :key="index">
+                                    <li v-for="(item,index) in filesList" :key="index">
                                         <a class="load-fileName">{{item.FileName}}</a>
                                         <a class="load-hoverShow" :href="item.FileURL" :download="item.FileName">下载</a>
                                         <a class="load-hoverShow" @click="delFiles(item)">删除</a>
@@ -209,7 +209,9 @@
                 longAndLat: '',
                 classYear: '',
                 imgFileList: [],
-                fileList: [],
+                filesList: [],
+                filesShowList: [],
+                filesImgList: [],
                 videoList: [],
                 scrapVisible: false,
                 deactVisible: false,
@@ -236,6 +238,28 @@
                         this.$refs.lifeReport.createLineChart();
                     });
                 }
+            },
+
+            filesList(val) {
+                let arr = [];
+                let arr2 = [];
+                this.filesList.map(res => {
+                    if (this.$config.baseimgs_file) {
+                        arr.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${res}`);
+
+                        if (/\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/.test(res)) {
+                            arr2.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${res}`);
+                        }
+                    } else {
+                        arr.push(res);
+
+                        if (/\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/.test(res)) {
+                            arr2.push(res);
+                        }
+                    }
+                });
+                this.filesShowList = arr;
+                this.filesImgList = arr2;
             }
         },
         created() {
@@ -271,28 +295,22 @@
             },
             getAssentFileFuc() {
                 let host = this.$config.efoms_HOST;
-                let method = this.$config.getAssentFileInfoList_GET;
+                let method = '/efoms-rest/deviceDetail/selectDeviceDetailInfoById';
                 let obj = {
                     devId: this.baseInfo.devId,
                     devTypeCode: this.baseInfo.devTypeCode,
-                    devCategoryCode: Common.getDevCategory().code
+                    // devCategoryCode: Common.getDevCategory().code
                 };
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         if (res.appCode == 0) {
-                            this.fileList = res.resultList;
-                            this.imgFileList = [];
-                            res.resultList.map(i => {
-                                if (/\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/.test(i.FileName)) {
-                                    this.imgFileList.push(i);
-                                }
-                            });
+                            let resObj = res.resultList || {};
+                            this.filesList = (resObj.filePath || '').split(',');
                         } else {
                             Common.printErrorLog(host, method);
                         }
                     })
                     .catch(err => {
                         Common.printErrorLog(host, method);
-                        console.log(err);
                     });
             },
             upload(fileId) {

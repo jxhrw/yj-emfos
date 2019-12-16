@@ -1030,7 +1030,7 @@
             getModifyInterface() {
                 let method = "";
                 let obj = {};
-                // if (!this.isMustFill()) { return false; }
+                if (!this.isMustFill()) { return false; }
                 switch (this.pageTypeCode) {
                     case "REPDEVTYPE21": // 交通标线
                         method = this.isAdd ? this.$config.addMarkingInfo_POST : this.$config.editMarkingInfo_POST;
