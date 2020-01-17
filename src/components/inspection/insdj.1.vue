@@ -17,11 +17,11 @@
             <div class="result-stas" slot="resultScreen">
                 <ul class="result-stas-look">
                     <li>结果总数：<span>{{countInfo.checkSum || 0}}</span></li>
-                    <li>
+                    <!-- <li>
                         人工巡检：
                         <span class="can-clk" :class="{'active': onSite=='isChecked'}" @click="siteFuc('isChecked')">已巡检{{countInfo.newIsCheckedCount}}</span>
                         <span class="can-clk" :class="{'active': onSite=='noChecked'}" @click="siteFuc('noChecked')">未巡检{{countInfo.newNoCheckedCount}}</span>
-                    </li>
+                    </li> -->
                     <li>
                         报修数量：
                         <span class="can-clk" :class="{'active': onSite=='isRepaired'}" style="padding: 0 10px;" @click="siteFuc('isRepaired')">{{countInfo.isRepaired||0}}</span>
@@ -64,8 +64,9 @@
                 </ul>
             </div>
             <div class="left-table" slot="leftTable">
-                <el-table :highlight-current-row="false" :data="tableData" stripe border class="content-table" @current-change="currentSelect" v-loading="isTableLoading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(255, 255, 255, 0.7)">
-                    <el-table-column fixed label="" width="50">
+                <el-table :highlight-current-row="false" :data="tableData" stripe border class="content-table" @current-change="currentSelect" v-loading="isTableLoading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(255, 255, 255, 0.7)" row-key="devId" lazy :load="treeLoad" :tree-props="{children: 'children', hasChildren: 'devId'}" @row-dblclick="treeLoadPar" @row-click="treeSelected">
+                    <el-table-column fixed label="" width="50"></el-table-column>
+                    <el-table-column fixed label="" width="40">
                         <template slot-scope="scope">
                             <i class="el-icon-success m-select-line" v-show="currentInfo && scope.row.devId == currentInfo.devId"></i>
                         </template>
@@ -202,10 +203,10 @@
                             <label>使用状态</label>
                             <span>{{currentInfo.repStatusName||'--'}}</span>
                         </li>
-                        <li>
+                        <!-- <li>
                             <label>人工巡检</label>
                             <span>{{currentInfo.checkResultName||'--'}}</span>
-                        </li>
+                        </li> -->
                         <li>
                             <label>最近巡检</label>
                             <span>{{currentInfo.lastCheckTime||'--'}}</span>
@@ -215,11 +216,11 @@
                 <div v-show="activeTab=='second'" class="right-scroll">
                     <div class="box-datas">
                         <div class="show-img-box" v-loading="imgLoading" element-loading-text="加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.7)">
-                            <img class="show-img" :src="datasInfo.veh_pic" alt="图像信息" @click="imgLarge">
+                            <img v-if="datasInfo.veh_pic" class="show-img" :src="datasInfo.veh_pic" alt="图像信息" @click="imgLarge">
 
                             <div style="width:0;height:0;overflow:hidden;">
                                 <viewer :images="imgFiles">
-                                    <img id="imgId" :src="datasInfo.veh_pic">
+                                    <img id="imgId" v-if="datasInfo.veh_pic" :src="datasInfo.veh_pic">
                                 </viewer>
                             </div>
                         </div>
@@ -246,11 +247,11 @@
                 <div v-show="activeTab=='fivth'" class="right-scroll">
                     <div class="box-datas">
                         <div class="show-img-box" v-loading="imgLoading" element-loading-text="加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.7)">
-                            <img class="show-img" :src="datasInfoF.veh_pic" alt="图像信息" @click="imgLargeF">
+                            <img class="show-img" v-if="datasInfoF.veh_pic" :src="datasInfoF.veh_pic" alt="图像信息" @click="imgLargeF">
 
                             <div style="width:0;height:0;overflow:hidden;">
                                 <viewer :images="imgFilesF">
-                                    <img id="imgIdF" :src="datasInfoF.veh_pic">
+                                    <img id="imgIdF" v-if="datasInfoF.veh_pic" :src="datasInfoF.veh_pic">
                                 </viewer>
                             </div>
                         </div>
@@ -277,11 +278,11 @@
                 <div v-show="activeTab=='sixth'" class="right-scroll">
                     <div class="box-datas">
                         <div class="show-img-box" v-loading="imgLoading" element-loading-text="加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.7)">
-                            <img class="show-img" :src="datasInfoW.veh_pic" alt="图像信息" @click="imgLargeW">
+                            <img class="show-img" v-if="datasInfoW.veh_pic" :src="datasInfoW.veh_pic" alt="图像信息" @click="imgLargeW">
 
                             <div style="width:0;height:0;overflow:hidden;">
                                 <viewer :images="imgFilesW">
-                                    <img id="imgIdW" :src="datasInfoW.veh_pic">
+                                    <img id="imgIdW" v-if="datasInfoW.veh_pic" :src="datasInfoW.veh_pic">
                                 </viewer>
                             </div>
                         </div>
@@ -393,10 +394,10 @@
                             <label>使用状态</label>
                             <span>{{currentInfo.repStatusName||'--'}}</span>
                         </li>
-                        <li>
+                        <!-- <li>
                             <label>人工巡检</label>
                             <span>{{currentInfo.checkResultName||'--'}}</span>
-                        </li>
+                        </li> -->
                         <li>
                             <label>最近巡检</label>
                             <span :title="currentInfo.lastCheckTime||''">{{currentInfo.lastCheckTime||'--'}}</span>
@@ -527,7 +528,12 @@
                     this.getPageVehSearForWFSJFuc(val.devId);
                     this.getVideoList();
                     this.getWarnInfoFuc();
-                    this.devRepeatCheck(val.devId, val.devTypeCode);
+                    if (val.repStatusCode == 'DEVREPSTATUS01' || val.repStatusCode == 'DEVREPSTATUS02') {
+                        this.isRepaired = true;
+                    } else {
+                        this.isRepaired = false;
+                    }
+                    // this.devRepeatCheck(val.devId, val.devTypeCode);
                 }
             },
             activeTab(val) {
@@ -541,20 +547,11 @@
                 }
             },
             datasInfo(val) {
-                // if (val.veh_pic && val.veh_pic.indexOf('tp://') > -1) {
-                //     // ftp或http图片转成base64的图片
-                //     this.imgLoading = true;
-                //     Common.baseImg(val.veh_pic, this, this.$config.baseimgs).then(res => {
-                //         val.veh_pic = res || '';
-                //         this.imgLoading = false;
-                //     }).catch(err => {
-                //         this.imgLoading = false;
-                //     });
-                // }
                 let newImg = new Image();
                 if (val.veh_pic && val.veh_pic.indexOf(this.$config.baseimgs) == -1) {
-                    val.veh_pic = `${this.$config.baseimgs}?path=${val.veh_pic}&token=${this.token}`;
+                    val.veh_pic = `${this.$config.baseimgs}?token=${this.token}&path=${encodeURIComponent(val.veh_pic)}`;
                 }
+                if (!val.veh_pic) return;
                 newImg.src = val.veh_pic;
                 this.imgLoading = true;
                 newImg.onerror = () => { // 图片加载错误时的替换图片
@@ -567,8 +564,9 @@
             datasInfoF(val) {
                 let newImg = new Image();
                 if (val.veh_pic && val.veh_pic.indexOf(this.$config.baseimgs) == -1) {
-                    val.veh_pic = `${this.$config.baseimgs}?path=${val.veh_pic}&token=${this.token}`;
+                    val.veh_pic = `${this.$config.baseimgs}?token=${this.token}&path=${encodeURIComponent(val.veh_pic)}`;
                 }
+                if (!val.veh_pic) return;
                 newImg.src = val.veh_pic;
                 this.imgLoading = true;
                 newImg.onerror = () => { // 图片加载错误时的替换图片
@@ -581,8 +579,9 @@
             datasInfoW(val) {
                 let newImg = new Image();
                 if (val.veh_pic && val.veh_pic.indexOf(this.$config.baseimgs) == -1) {
-                    val.veh_pic = `${this.$config.baseimgs}?path=${val.veh_pic}&token=${this.token}`;
+                    val.veh_pic = `${this.$config.baseimgs}?token=${this.token}&path=${encodeURIComponent(val.veh_pic)}`;
                 }
+                if (!val.veh_pic) return;
                 newImg.src = val.veh_pic;
                 this.imgLoading = true;
                 newImg.onerror = () => { // 图片加载错误时的替换图片
@@ -600,7 +599,7 @@
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         if (res.path) {
-                            window.open(res.path);
+                            window.open(res.path + '&token=' + this.token);
                         }
                     })
                     .catch(err => {
@@ -750,6 +749,33 @@
                         console.log(err);
                     });
             },
+            treeSelected(row) {
+                if (row && row.devTypeCode == 'REPDEVTYPE999') {
+                    this.currentInfo = row;
+                }
+            },
+            treeLoadPar(row, column, event) {
+                // console.log(row);
+                // event.path[3].children[0].children[0].childNodes[0].click();
+                let DOM = event.currentTarget.querySelector('.el-table__expand-icon');
+                if (DOM) {
+                    DOM.click();
+                }
+            },
+            treeLoad(tree, treeNode, resolve) {
+                let pageHost = this.$config.efoms_HOST;
+                let pageMethods = '/efoms-rest/checkDevice/getNewCheckPage';
+                this.$api.getMethod(pageHost, pageMethods, { parentDevId: tree.devId, devTypeCode: 'REPDEVTYPE999', currentPage: '1', pageSize: '10' }, this.token).then(res => {
+                        if (res.appCode == 0) {
+                            resolve(res.resultList.result || []);
+                        } else {
+                            Common.printErrorLog(pageHost, pageMethods);
+                        }
+                    })
+                    .catch(err => {
+                        Common.printErrorLog(pageHost, pageMethods);
+                    });
+            },
             // 巡检重置
             reFreshCheckResultFuc() {
                 this.$confirm('此操作将重置巡检状态, 是否继续?', '提示', {
@@ -894,8 +920,8 @@
                 let queryWarn = {
                     pageSize: 100,
                     currentPage: 1,
-                    wranStartTime: today1 + ' 00:00:00',
-                    wranEndTime: today2 + ' 23:59:59',
+                    // wranStartTime: today1 + ' 00:00:00',
+                    // wranEndTime: today2 + ' 23:59:59',
                     devTypeCode: this.currentInfo.devTypeCode,
                     devId: this.currentInfo.devId,
                     devName: this.currentInfo.devName,
@@ -924,7 +950,7 @@
             },
             chooseItem(index) {
                 this.datasIndex = index;
-                this.datasInfo = this.datasList[index];
+                this.datasInfo = this.datasList[index] || {};
             },
             imgLarge() {
                 this.imgFiles = [];
@@ -937,7 +963,7 @@
             },
             chooseItemF(index) {
                 this.datasIndexF = index;
-                this.datasInfoF = this.datasListF[index];
+                this.datasInfoF = this.datasListF[index] || {};
             },
             imgLargeF() {
                 this.imgFilesF = [];
@@ -950,7 +976,7 @@
             },
             chooseItemW(index) {
                 this.datasIndexW = index;
-                this.datasInfoW = this.datasListW[index];
+                this.datasInfoW = this.datasListW[index] || {};
             },
             imgLargeW() {
                 this.imgFilesW = [];

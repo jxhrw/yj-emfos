@@ -4,7 +4,7 @@
             <label>图片上传</label>
             <template v-for="(item,index) in zjImgFiles">
                 <div class="img-preview" @mouseenter="enter(index)" @mouseleave="leave()" :key="index">
-                    <img :src="item.mappingAddress || item.FileURL" width="100%" height="auto" alt="">
+                    <img :src="item.downloadPath" width="100%" height="auto" alt="">
                     <div class="img-del" v-show="seen&&index==current" @click="delImg(index)">
                         <p>删除</p>
                     </div>
@@ -87,13 +87,18 @@
                 }
 
                 formData.append("file", file);
-                this.$api.postMethod(this.$config.efoms_HOST, this.$config.uploadFile_POST, formData, this.token)
+                this.$api.postMethod(this.$config.efoms_HOST, '/efoms-rest/file/uploadFile', formData, this.token)
                     .then(res => {
                         if (res.appCode == 0) {
-                            this.zjImgFiles.push(res.resultList);
+                            let obj = res.resultList || {};
+                            let objShow = JSON.parse(JSON.stringify(obj));
+                            if (this.$config.baseimgs) {
+                                objShow.downloadPath = (`${this.$config.baseimgs}?path=${obj.downloadPath}&token=${this.token}`);
+                            }
+                            this.zjImgFiles.push(objShow);
                             this.imgFileList.push({
                                 fileName: file.name,
-                                fileURL: res.resultList.downloadPath,
+                                fileURL: obj.downloadPath,
                                 fileMode: file.name
                                     .slice(file.name.lastIndexOf(".") + 1)
                                     .toLowerCase()
@@ -143,6 +148,10 @@
         margin-right: 10px;
         background: #FFFFFF;
         border: 1px solid #E1E7ED;
+    }
+
+    .content-img-upload .img-preview img {
+        height: 100%;
     }
 
     .content-img-upload .img-preview .img-del {

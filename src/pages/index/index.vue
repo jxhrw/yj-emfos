@@ -33,6 +33,7 @@
         },
         mounted() {
             this.tipsPush('EFOMS_OPERATION');
+            this.tipsPush('efoms_heartbeat');
             window.myVue = this;
         },
         methods: {

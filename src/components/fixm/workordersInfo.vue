@@ -496,7 +496,7 @@ export default {
           header
         )
         .then(res => {
-          window.open(res.path);
+          window.open(res.path+'&token='+this.token);
         })
         .catch(err => {
           Common.printErrorLog(this.$config.efoms_HOST, this.$config.exportWorkorders_GET);

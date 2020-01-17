@@ -5,8 +5,8 @@
             <div class="ej-content-title">
                 <h2>{{title}}</h2>
                 <div>
-                    <div class="btn-title btn-operation" @click="operateFuc('add')">添加</div>
-                    <div class="btn-title btn-operation" @click="operateFuc('edit')">修改</div>
+                    <!-- <div class="btn-title btn-operation" @click="operateFuc('add')">添加</div>
+                    <div class="btn-title btn-operation" @click="operateFuc('edit')">修改</div> -->
                     <div class="btn-title btn-operation" @click="operateFuc('scrap')">报废</div>
                     <div class="btn-title btn-operation" @click="operateFuc('deact')">停用</div>
                     <div class="btn-title btn-operation" @click="operateFuc('enable')">启用</div>
@@ -242,10 +242,10 @@
                 let arr2 = [];
                 this.filesList.map(res => {
                     if (this.$config.baseimgs_file) {
-                        arr.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${res}`);
+                        arr.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${encodeURIComponent(res)}`);
 
                         if (/\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/.test(res)) {
-                            arr2.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${res}`);
+                            arr2.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${encodeURIComponent(res)}`);
                         }
                     } else {
                         arr.push(res);
@@ -326,7 +326,7 @@
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         if (res.appCode == 0) {
                             let resObj = res.resultList[0] || {};
-                            this.filesList = (resObj.filePath || '').split(',');
+                            this.filesList = resObj.filePath ? (resObj.filePath).split(',') : []
                         } else {
                             Common.printErrorLog(host, method);
                         }

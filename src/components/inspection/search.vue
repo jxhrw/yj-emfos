@@ -663,6 +663,10 @@
                         color: #00c187;
                     }
                 }
+
+                /deep/ .el-input__suffix{
+                    top: -5px;
+                }
             }
 
             .ass-more-con {

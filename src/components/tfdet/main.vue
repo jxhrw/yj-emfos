@@ -124,9 +124,9 @@
                     <div class="dialog-main">
                         <div class="revoke-reason">
                             <div class="rotation" style="height:165px">
-                                <el-carousel v-if="imgFileList.length>0" trigger="click" height="165px" arrow="never">
-                                    <el-carousel-item v-for="(item,index) in imgFileList" :key="index">
-                                        <div class="carousel-image" :style="{'background-image':'url(\''+item.FileShow+'\')'}"></div>
+                                <el-carousel v-if="filesImgList.length>0" trigger="click" height="165px" arrow="never">
+                                    <el-carousel-item v-for="(item,index) in filesImgList" :key="index">
+                                        <div class="carousel-image" :style="{'background-image':'url(\''+item+'\')'}"></div>
                                     </el-carousel-item>
                                 </el-carousel>
                                 <div v-else>暂无图片文件</div>
@@ -135,10 +135,10 @@
                         <div class="revoke-reason" style="margin:0;">
                             <el-scrollbar class="ej-load-scrollbar">
                                 <ul class="file-download">
-                                    <li v-for="(item,index) in filesList" :key="index">
-                                        <a class="load-fileName">{{item.FileName}}</a>
-                                        <a class="load-hoverShow" :href="item.FileURL" :download="item.FileName">下载</a>
-                                        <a class="load-hoverShow" @click="delFiles(item)">删除</a>
+                                    <li v-for="(item,index) in filesShowList" :key="index">
+                                        <a class="load-fileName">{{urlToName(item)}}</a>
+                                        <a class="load-hoverShow" :href="item.FileURL" download="">下载</a>
+                                        <a class="load-hoverShow" @click="delFiles(item,index)">删除</a>
                                     </li>
                                 </ul>
                             </el-scrollbar>
@@ -248,7 +248,7 @@
                         arr.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${res}`);
 
                         if (/\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/.test(res)) {
-                            arr2.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${res}`);
+                            arr2.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${encodeURIComponent(res)}`);
                         }
                     } else {
                         arr.push(res);
@@ -264,6 +264,9 @@
         },
         created() {
             this.baseInfo = JSON.parse(sessionStorage.getItem('tfDetailInfo'));
+
+            let resObj = this.baseInfo || {};
+            this.filesList = resObj.fileUrl ? (resObj.fileUrl).split(',') : [];
         },
         mounted() {
             this.token = Common.getQueryString("token");
@@ -304,7 +307,7 @@
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         if (res.appCode == 0) {
                             let resObj = res.resultList || {};
-                            this.filesList = (resObj.filePath || '').split(',');
+                            this.filesList = resObj.fileUrl ? (resObj.fileUrl).split(',') : [];
                         } else {
                             Common.printErrorLog(host, method);
                         }
@@ -312,53 +315,50 @@
                     .catch(err => {
                         Common.printErrorLog(host, method);
                     });
+            },
+            urlToName(val) {
+                var str = '';
+                if (val.indexOf('/') > -1) {
+                    let arr = val.split('/');
+                    str = arr[arr.length - 1];
+                }
+                return str;
+            },
+            // 保存资产信息的修改
+            saveBaseInfo() {
+                let obj = {
+                    deviceId: this.baseInfo.devId,
+                    devName: this.baseInfo.devName, //设备名称
+                    devTypeCode: this.baseInfo.devTypeCode,
+                    fileUrl: this.filesList.join(',')
+                };
+                this.$api.get(`${this.$config.efoms_HOST}/efoms-rest/UbmsAddInfo/updateUbmsDev`, { token: this.token, mapBean: obj }, { token: this.token }).then((res) => {
+                    Common.ejMessage("success", "操作成功");
+                });
             },
             upload(fileId) {
                 var formData = new FormData();
                 var file = document.getElementById(fileId).files[0];
                 formData.append("file", file);
-                Request.uploadFile(formData, res => {
-                    let host = this.$config.efoms_HOST;
-                    let method = this.$config.insertAssentFileInfo_GET;
-                    let obj = {
-                        devId: this.baseInfo.devId,
-                        devTypeCode: this.baseInfo.devTypeCode,
-                        devCategoryCode: Common.getDevCategory().code,
-                        FileShow: res.resultList.mappingAddress,
-                        FileURL: res.resultList.downloadPath,
-                        FileMode: file.name.slice(file.name.lastIndexOf(".") + 1).toLowerCase(),
-                        FileName: res.resultList.fileName
-                    };
-                    this.$api.getMethod(host, method, { list: JSON.stringify([obj]) }, this.token).then(res => {
-                            if (res.appCode == 0) {
-                                this.getAssentFileFuc();
-                            } else {
-                                Common.printErrorLog(host, method);
-                            }
-                        })
-                        .catch(err => {
-                            Common.printErrorLog(host, method);
-                            console.log(err);
-                        });
+                this.$api.post(`${this.$config.ubms_HOST}/ubms-server/file/local/upload/annex`, formData, { token: this.token }).then(res => {
+                    console.log(res);
+                    if (res.indexOf('/script>') > -1) {
+                        let txt = res.split('/script>')[1];
+                        let obj = JSON.parse(txt);
+                        let url = (obj.resultList || '').replace(/[\;]/g, "");
+                        // 对返回的图片路径的处理
+                        // if (url.indexOf('/upload') > -1) {
+                        //     url = url.split('/upload')[0] + '/ubms-server/upload' + url.split('/upload')[1];
+                        // }
+                        this.filesList.push(url);
+
+                        this.saveBaseInfo();
+                    }
                 });
             },
-            delFiles(e) {
-                let host = this.$config.efoms_HOST;
-                let method = this.$config.deleteAssentFileInfo_GET;
-                let obj = {
-                    fileId: e.fileId
-                };
-                this.$api.getMethod(host, method, obj, this.token).then(res => {
-                        if (res.appCode == 0) {
-                            this.getAssentFileFuc();
-                        } else {
-                            Common.printErrorLog(host, method);
-                        }
-                    })
-                    .catch(err => {
-                        Common.printErrorLog(host, method);
-                        console.log(err);
-                    });
+            delFiles(e, index) {
+                this.filesList.splice(index, 1);
+                this.saveBaseInfo();
             },
             // 报废，停用，启用方法
             submitStutusChange(status) {

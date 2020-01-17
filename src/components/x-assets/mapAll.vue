@@ -494,13 +494,14 @@
                     console.log("请慢一点，当前请求还没有结束");
                     return;
                 }
+                let oldSelect = this.layerSelect;
                 this.layerSelect = this.layerSelect != obj.layer.id ? obj.layer.id : "";
-                this.devTypeCode =
-                    this.devTypeCode != obj.devTypeCode ? obj.devTypeCode : "";
+                this.devTypeCode = this.devTypeCode != obj.devTypeCode ? obj.devTypeCode : "";
                 this.devNum = this.devNum != obj.devNum ? obj.devNum : 0;
-                this.layerList.map(val => {
-                    _map.setLayerVisibleById(val.layer.id, false);
-                });
+                if (oldSelect) {
+                    _map.setLayerVisibleById(oldSelect, false);
+                }
+                // this.layerList.map(val => {});
                 if (this.layerSelect) {
                     var arr = [];
                     let _this = this;
@@ -520,14 +521,16 @@
                             // _map.setLayerVisibleById(_this.layerSelect, true);
                         });
                     } else {
-                        // _map.setLayerVisibleById(_this.layerSelect, true);
+                        _map.setLayerVisibleById(_this.layerSelect, true);
                     }
 
                     if (this.layerSelect != this.$config.dev22) {
                         // _map.setLayerVisibleById(this.$config.dev21, true);
                     }
 
-                    this.getCheckCount();
+                    if (this.devTypeCode.indexOf('REPDEVTYPE2') == -1) {
+                        this.getCheckCount();
+                    }
                 }
             },
             getCheckCount() {

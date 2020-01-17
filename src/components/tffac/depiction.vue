@@ -2,8 +2,8 @@
     <div class="depiction-info">
         <div class="title">
             <h3>{{title}}</h3>
-            <div class="btn-title btn-operation" @click="operateFuc('add')">添加</div>
-            <div class="btn-title btn-operation" @click="operateFuc('edit')">修改</div>
+            <!-- <div class="btn-title btn-operation" @click="operateFuc('add')">添加</div>
+            <div class="btn-title btn-operation" @click="operateFuc('edit')">修改</div> -->
             <div class="btn-title btn-operation" @click="operateFuc('scrap')">报废</div>
             <div class="btn-title btn-operation" @click="operateFuc('deact')">停用</div>
             <div class="btn-title btn-operation" @click="operateFuc('enable')">启用</div>
@@ -143,7 +143,7 @@
                 let method = this.$config.exportfacilityInfo_GET;
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
-                        window.open(res.path);
+                        window.open(res.path + '&token=' + this.token);
                     })
                     .catch(err => {
                         Common.printErrorLog(host, method);

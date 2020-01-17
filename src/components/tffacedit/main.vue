@@ -905,7 +905,7 @@
                 let arr = [];
                 this.filesList.map(res => {
                     if (this.$config.baseimgs_file) {
-                        arr.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${res}`);
+                        arr.push(`${this.$config.baseimgs_file}?token=${this.token}&path=${encodeURIComponent(res)}`);
                     } else {
                         arr.push(res);
                     }
@@ -1264,7 +1264,7 @@
                     });
             },
             getFilesInfo() {
-                this.filesList = (this.baseInfo.filePath || '').split(',');
+                this.filesList = this.baseInfo.filePath ? (this.baseInfo.filePath).split(',') : [];
             },
             // 地图定位相关--start
             // 保存经纬度修改

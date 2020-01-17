@@ -154,10 +154,10 @@ exports.htmlPlugin = function() {
         // 针对测试环境入口多，热更新太慢
         console.log(conf.template);
         switch (conf.template) {
-            // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/index/index.html':
-            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfequ/tfequ.html':
-            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfdet/tfdet.html':
-            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfedit/tfedit.html':
+            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/index/index.html':
+                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfequ/tfequ.html':
+                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfdet/tfdet.html':
+                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tfedit/tfedit.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tffac/tffac.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tffacdet/tffacdet.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/tffacedit/tffacedit.html':
@@ -171,7 +171,7 @@ exports.htmlPlugin = function() {
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/repm/repm.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/insdc/insdc.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/inspection/inspection.html':
-                // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/xassets/assets.html':
+            case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/xassets/assets.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/insvdmd/insvdmd.html':
                 // case 'D:/work/1开发库/2源代码/前端源码/efoms-web/src/pages/statistics/statistics.html':
                 arr.push(new HtmlWebpackPlugin(conf));

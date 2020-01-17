@@ -143,7 +143,7 @@
                     failureTypeName: failureTypeName,
                     fileInfoList: this.imgFileList
                 };
-                this.$api.postMethod(this.$config.efoms_HOST, '/efoms-rest/workorders/createWorkordersInfo', repairsInfo, this.token,
+                this.$api.postMethod(this.$config.efoms_HOST, '/efoms-rest/repairs/createRepairsInfo', repairsInfo, this.token,
                         'noContentType')
                     .then(res => {
                         if (res.appCode == 0) {
@@ -153,11 +153,11 @@
                             this.submitNormal();
                         } else {
                             Common.ejMessage("warning");
-                            Common.printErrorLog(this.$config.efoms_HOST, '/efoms-rest/workorders/createWorkordersInfo');
+                            Common.printErrorLog(this.$config.efoms_HOST, '/efoms-rest/repairs/createRepairsInfo');
                         }
                     })
                     .catch(err => {
-                        Common.printErrorLog(this.$config.efoms_HOST, '/efoms-rest/workorders/createWorkordersInfo');
+                        Common.printErrorLog(this.$config.efoms_HOST, '/efoms-rest/repairs/createRepairsInfo');
                         console.log(err);
                     });
             },

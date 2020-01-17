@@ -17,11 +17,11 @@
             <div class="result-stas" slot="resultScreen">
                 <ul class="result-stas-look">
                     <li>结果总数：<span>{{countInfo.checkSum || 0}}</span></li>
-                    <li>
+                    <!-- <li>
                         人工巡检：
                         <span class="can-clk" :class="{'active': onSite=='isChecked'}" @click="siteFuc('isChecked')">已巡检{{countInfo.newIsCheckedCount}}</span>
                         <span class="can-clk" :class="{'active': onSite=='noChecked'}" @click="siteFuc('noChecked')">未巡检{{countInfo.newNoCheckedCount}}</span>
-                    </li>
+                    </li> -->
                     <li>
                         报修数量：
                         <span class="can-clk" :class="{'active': onSite=='isRepaired'}" style="padding: 0 10px;" @click="siteFuc('isRepaired')">{{countInfo.isRepaired||0}}</span>
@@ -182,10 +182,10 @@
                             <label>使用状态</label>
                             <span>{{currentInfo.repStatusName||'--'}}</span>
                         </li>
-                        <li>
+                        <!-- <li>
                             <label>人工巡检</label>
                             <span>{{currentInfo.checkResultName||'--'}}</span>
-                        </li>
+                        </li> -->
                         <li>
                             <label>最近巡检</label>
                             <span :title="currentInfo.lastCheckTime||''">{{currentInfo.lastCheckTime||'--'}}</span>
@@ -303,7 +303,12 @@
                     // this.getPageVehSearFuc(val.devId);
                     this.getVideoList();
                     this.getWarnInfoFuc();
-                    this.devRepeatCheck(val.devId, val.devTypeCode);
+                    if (val.repStatusCode == 'DEVREPSTATUS01' || val.repStatusCode == 'DEVREPSTATUS02') {
+                        this.isRepaired = true;
+                    } else {
+                        this.isRepaired = false;
+                    }
+                    // this.devRepeatCheck(val.devId, val.devTypeCode);
                 }
             },
             activeTab(val) {
@@ -335,7 +340,7 @@
                 let obj = JSON.parse(JSON.stringify(this.queryConditions));
                 this.$api.getMethod(host, method, obj, this.token).then(res => {
                         if (res.path) {
-                            window.open(res.path);
+                            window.open(res.path + '&token=' + this.token);
                         }
                     })
                     .catch(err => {
@@ -570,8 +575,8 @@
                 let queryWarn = {
                     pageSize: 100,
                     currentPage: 1,
-                    wranStartTime: today1 + ' 00:00:00',
-                    wranEndTime: today2 + ' 23:59:59',
+                    // wranStartTime: today1 + ' 00:00:00',
+                    // wranEndTime: today2 + ' 23:59:59',
                     devTypeCode: this.currentInfo.devTypeCode,
                     devId: this.currentInfo.devId,
                     devName: this.currentInfo.devName,

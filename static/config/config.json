@@ -13,7 +13,7 @@
     "loginUrl": "http://192.168.91.158:10006/efoms-web/",
     "mapConfig": "cmps_view",
     "mapConfigAssets": "efoms",
-    "baseimgs": "http://192.168.106.129:8080/idcs-web/common/picView.jsp",
+    "baseimgs": "http://192.168.106.130:12345/pic-proxy/pic/picShow.htm",
     "baseimgs_file": "http://192.168.106.130:12345/pic-proxy/pic/picShow.htm",
     "mapImages_HOST": "http://192.168.104.102:8080/js/",
     "mapSceneUrl": "http://192.168.103.120:8034/truevision/index.html",
